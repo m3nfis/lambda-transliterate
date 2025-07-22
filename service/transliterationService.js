@@ -5,45 +5,10 @@ const JapaneseTransliterationService = require('./japaneseTransliterationService
 const ArabicTransliterationService = require('./arabicTransliterationService');
 const KoreanTransliterationService = require('./koreanTransliterationService');
 
-// Load country to script mapping
-let countryToScriptMap = {};
-try {
-  const mappingData = JSON.parse(fs.readFileSync('./country-script-mapping.json', 'utf8'));
-  countryToScriptMap = mappingData.countryToScriptMap || {};
-} catch (error) {
-  console.warn('Warning: Could not load country-script-mapping.json');
-  countryToScriptMap = {};
-}
+// Country-based routing is now handled directly in the transliterate method
 
-// Load test data as source of truth
-let testData = {};
-try {
-  testData = JSON.parse(fs.readFileSync('./test-data.json', 'utf8'));
-} catch (error) {
-  console.warn('Warning: Could not load test-data.json');
-  testData = { testCases: {} };
-}
-
-// Create lookup maps from test data for fast exact matching
-const exactMatches = {};
-
-// Build lookup maps from test data
-Object.keys(testData.testCases).forEach(scriptKey => {
-  const scriptData = testData.testCases[scriptKey];
-  const country = scriptData.country;
-  
-  if (!exactMatches[country]) {
-    exactMatches[country] = {};
-  }
-  
-  scriptData.names.forEach(nameData => {
-    const key = `${nameData.firstName}|${nameData.lastName}`;
-    exactMatches[country][key] = {
-      firstName: nameData.expected.firstName,
-      lastName: nameData.expected.lastName
-    };
-  });
-});
+// Note: Exact matching from test data removed for production build
+// The service now relies on name-mappings.json and transliteration libraries
 
 class TransliterationService {
   constructor() {
@@ -129,30 +94,13 @@ class TransliterationService {
       console.warn(`Country-based routing failed for ${country}:`, error.message);
     }
 
-    // Second, check for exact match in test data
-    const exactMatchKey = `${firstName}|${lastName || ''}`;
-    if (exactMatches[country] && exactMatches[country][exactMatchKey]) {
-      const match = exactMatches[country][exactMatchKey];
-      return {
-        firstName: match.firstName,
-        lastName: match.lastName || '',
-        country: country,
-        accuracy: 1.0,
-        method: 'exact_match_from_test_data'
-      };
-    }
-
     // Fall back to script detection
     const firstNameScript = this.detectScript(firstName);
     const lastNameScript = lastName ? this.detectScript(lastName) : 'latin';
     const script = firstNameScript !== 'latin' ? firstNameScript : lastNameScript;
 
-    // Route to appropriate service based on detected script and country context
+    // Route to appropriate service based on detected script
     try {
-      // Get expected scripts for this country
-      const expectedScripts = countryToScriptMap[country] || [];
-      
-      // Route based on detected script with country context
       switch (script) {
         case 'japanese':
           return await this.japaneseService.transliterate(input);
@@ -180,50 +128,7 @@ class TransliterationService {
           return await this.transliterateGeneral(input);
         
         default:
-          // For unknown scripts, try to route based on country's expected scripts
-          if (expectedScripts.length > 0) {
-            const primaryScript = expectedScripts[0].script_code;
-            
-            // Map script codes to our script detection names
-            const scriptCodeToName = {
-              'Hani': 'japanese', // Japanese Kanji and Chinese characters - route to Japanese
-              'Hira': 'japanese',
-              'Kana': 'japanese',
-              'Hans': 'japanese', // Simplified Chinese - route to Japanese for now
-              'Hant': 'japanese', // Traditional Chinese - route to Japanese for now
-              'Arab': 'arabic',
-              'Hang': 'korean',
-              'Cyrl': 'russian',
-              'Deva': 'hindi',
-              'Grek': 'greek',
-              'Thai': 'thai',
-              'Latn': 'latin'
-            };
-            
-            const scriptName = scriptCodeToName[primaryScript];
-            if (scriptName) {
-              console.log(`Routing ${country} (${primaryScript}) to ${scriptName} transliteration`);
-              
-              switch (scriptName) {
-                case 'japanese':
-                  return await this.japaneseService.transliterate(input);
-                case 'arabic':
-                  return await this.arabicService.transliterate(input);
-                case 'korean':
-                  return await this.koreanService.transliterate(input);
-                case 'russian':
-                  return await this.transliterateRussian(input);
-                case 'hindi':
-                  return await this.transliterateHindi(input);
-                case 'greek':
-                  return await this.transliterateGreek(input);
-                case 'thai':
-                  return await this.transliterateThai(input);
-              }
-            }
-          }
-          
-          // Final fallback to general transliteration
+          // Final fallback to general transliteration for unknown scripts
           return await this.transliterateGeneral(input);
       }
     } catch (error) {

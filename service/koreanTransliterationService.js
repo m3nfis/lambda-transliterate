@@ -1,6 +1,5 @@
 const { romanize } = require('@romanize/korean');
 const fs = require('fs');
-const FuzzySearch = require('fuzzy-search');
 
 // Load Korean-specific name mappings
 let koreanMappings = {};
@@ -95,93 +94,10 @@ class KoreanTransliterationService {
     return normalized;
   }
 
-  // Fuzzy match against test data
-  findFuzzyMatch(transliteratedName, nameType) {
-    try {
-      // Load test data for fuzzy matching
-      const testData = JSON.parse(fs.readFileSync('./new-tests.json', 'utf8'));
-      const koreanTests = testData.testCases.korean.names;
-      
-      // Create a list of expected names from test data
-      const expectedNames = koreanTests.map(test => ({
-        original: test.expected[nameType],
-        normalized: this.normalizeForFuzzyMatch(test.expected[nameType])
-      }));
-      
-      // Normalize the transliterated name
-      const normalizedTransliterated = this.normalizeForFuzzyMatch(transliteratedName);
-      
-      // Find the best match using fuzzy search
-      const fuzzySearch = new FuzzySearch(expectedNames, ['normalized'], {
-        caseSensitive: false,
-        sort: true
-      });
-      
-      const matches = fuzzySearch.search(normalizedTransliterated);
-      
-      if (matches.length > 0) {
-        const bestMatch = matches[0];
-        const similarity = this.calculateSimilarity(normalizedTransliterated, bestMatch.normalized);
-        
-        // Only return match if similarity is above threshold
-        if (similarity > 0.85) {
-          return {
-            matched: bestMatch.original,
-            similarity: similarity,
-            method: 'fuzzy_match'
-          };
-        }
-      }
-      
-      return null;
-    } catch (error) {
-      console.warn('Fuzzy matching failed:', error.message);
-      return null;
-    }
-  }
+  // Note: Fuzzy matching against test data removed for production build
+  // The service now relies on name-mappings.json and romanization libraries
 
-  // Calculate similarity between two strings
-  calculateSimilarity(str1, str2) {
-    if (str1 === str2) return 1.0;
-    if (str1.length === 0 || str2.length === 0) return 0.0;
-    
-    const longer = str1.length > str2.length ? str1 : str2;
-    const shorter = str1.length > str2.length ? str2 : str1;
-    
-    if (longer.length === 0) return 1.0;
-    
-    const editDistance = this.levenshteinDistance(longer, shorter);
-    return (longer.length - editDistance) / longer.length;
-  }
-
-  // Levenshtein distance calculation
-  levenshteinDistance(str1, str2) {
-    const matrix = [];
-    
-    for (let i = 0; i <= str2.length; i++) {
-      matrix[i] = [i];
-    }
-    
-    for (let j = 0; j <= str1.length; j++) {
-      matrix[0][j] = j;
-    }
-    
-    for (let i = 1; i <= str2.length; i++) {
-      for (let j = 1; j <= str1.length; j++) {
-        if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
-          matrix[i][j] = matrix[i - 1][j - 1];
-        } else {
-          matrix[i][j] = Math.min(
-            matrix[i - 1][j - 1] + 1,
-            matrix[i][j - 1] + 1,
-            matrix[i - 1][j] + 1
-          );
-        }
-      }
-    }
-    
-    return matrix[str2.length][str1.length];
-  }
+  // Note: Similarity calculation methods removed as they were only used for fuzzy matching
 
   applyKoreanNameCorrections(text) {
     // Common Korean name corrections to match expected romanization
@@ -649,19 +565,6 @@ class KoreanTransliterationService {
 
       // Use @romanize/korean library
       const transliterated = this.transliterateWithKoreanLibrary(name);
-      
-      // Try fuzzy matching against test data
-      const fuzzyMatch = this.findFuzzyMatch(transliterated, nameType);
-      
-      if (fuzzyMatch) {
-        return {
-          transliterated: fuzzyMatch.matched,
-          accuracy: Math.min(0.95, fuzzyMatch.similarity),
-          method: fuzzyMatch.method,
-          originalTransliterated: transliterated,
-          similarity: fuzzyMatch.similarity
-        };
-      }
       
       return {
         transliterated,
