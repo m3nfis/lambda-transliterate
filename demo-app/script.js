@@ -6,11 +6,14 @@ const CONFIG = {
     // For local development, you can use a local endpoint
     // API_ENDPOINT: 'http://localhost:3000/dev/transliterate',
     
-    // For testing without a real endpoint, set this to true
-    DEMO_MODE: true
+    // Browser library mode - uses real transliteration in browser
+    BROWSER_LIB_MODE: true,
+    
+    // For testing without a real endpoint, set this to true (will use mock responses)
+    DEMO_MODE: false
 };
 
-// Demo responses for when API is not available
+// Demo responses for fallback when browser library fails
 const DEMO_RESPONSES = {
     'محمد-علي-EG': {
         firstName: 'Mohammed',
@@ -18,76 +21,82 @@ const DEMO_RESPONSES = {
         country: 'EG',
         accuracy: 0.95,
         details: {
-            firstNameMethod: 'arabic_transliterate',
-            lastNameMethod: 'arabic_transliterate',
+            firstNameMethod: 'arabic_transliterate_demo',
+            lastNameMethod: 'arabic_transliterate_demo',
             firstNameAccuracy: 0.95,
             lastNameAccuracy: 0.95,
-            serviceInitialized: true
+            serviceInitialized: true,
+            note: 'Demo fallback response'
         }
     },
     '太郎-山田-JP': {
         firstName: 'Tarou',
         lastName: 'Yamada',
         country: 'JP',
-        accuracy: 0.95,
+        accuracy: 0.90,
         details: {
-            firstNameMethod: 'kuroshiro',
-            lastNameMethod: 'kuroshiro',
-            firstNameAccuracy: 0.95,
-            lastNameAccuracy: 0.95,
-            serviceInitialized: true
+            firstNameMethod: 'japanese_romaji_demo',
+            lastNameMethod: 'japanese_romaji_demo',
+            firstNameAccuracy: 0.90,
+            lastNameAccuracy: 0.90,
+            serviceInitialized: true,
+            note: 'Demo fallback response'
         }
     },
     '민수-김-KR': {
         firstName: 'Minsu',
         lastName: 'Kim',
         country: 'KR',
-        accuracy: 0.95,
+        accuracy: 0.90,
         details: {
-            firstNameMethod: 'korean_romanize',
-            lastNameMethod: 'korean_romanize',
-            firstNameAccuracy: 0.95,
-            lastNameAccuracy: 0.95,
-            serviceInitialized: true
+            firstNameMethod: 'korean_romanize_demo',
+            lastNameMethod: 'korean_romanize_demo',
+            firstNameAccuracy: 0.90,
+            lastNameAccuracy: 0.90,
+            serviceInitialized: true,
+            note: 'Demo fallback response'
         }
     },
     '小明-王-CN': {
         firstName: 'Xiaoming',
         lastName: 'Wang',
         country: 'CN',
-        accuracy: 0.6,
-        method: 'general_transliteration',
+        accuracy: 0.70,
         details: {
-            firstNameMethod: 'general_transliteration',
-            lastNameMethod: 'general_transliteration',
-            firstNameAccuracy: 0.6,
-            lastNameAccuracy: 0.6
+            firstNameMethod: 'chinese_pinyin_demo',
+            lastNameMethod: 'chinese_pinyin_demo',
+            firstNameAccuracy: 0.70,
+            lastNameAccuracy: 0.70,
+            serviceInitialized: true,
+            note: 'Demo fallback response'
         }
     },
     'Владимир-Иванов-RU': {
         firstName: 'Vladimir',
         lastName: 'Ivanov',
         country: 'RU',
-        accuracy: 0.6,
-        method: 'general_transliteration',
+        accuracy: 0.85,
         details: {
-            firstNameMethod: 'general_transliteration',
-            lastNameMethod: 'general_transliteration',
-            firstNameAccuracy: 0.6,
-            lastNameAccuracy: 0.6
+            firstNameMethod: 'cyrillic_latin_demo',
+            lastNameMethod: 'cyrillic_latin_demo',
+            firstNameAccuracy: 0.85,
+            lastNameAccuracy: 0.85,
+            serviceInitialized: true,
+            note: 'Demo fallback response'
         }
     },
     'สมชาย-จันทร์-TH': {
         firstName: 'Somchai',
         lastName: 'Chan',
         country: 'TH',
-        accuracy: 0.6,
-        method: 'general_transliteration',
+        accuracy: 0.65,
         details: {
-            firstNameMethod: 'general_transliteration',
-            lastNameMethod: 'general_transliteration',
-            firstNameAccuracy: 0.6,
-            lastNameAccuracy: 0.6
+            firstNameMethod: 'thai_latin_demo',
+            lastNameMethod: 'thai_latin_demo',
+            firstNameAccuracy: 0.65,
+            lastNameAccuracy: 0.65,
+            serviceInitialized: true,
+            note: 'Demo fallback response'
         }
     }
 };
@@ -95,13 +104,24 @@ const DEMO_RESPONSES = {
 // DOM Elements
 let elements = {};
 
+// Browser transliteration library instance
+let browserLib = null;
+
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     initializeElements();
     initializeEventListeners();
+    initializeBrowserLib();
     updateAPIEndpointDisplay();
     console.log('Demo app initialized!');
 });
+
+function initializeBrowserLib() {
+    if (CONFIG.BROWSER_LIB_MODE && typeof BrowserTransliterationLib !== 'undefined') {
+        browserLib = new BrowserTransliterationLib();
+        console.log('Browser transliteration library initialized:', browserLib.getInfo());
+    }
+}
 
 function initializeElements() {
     elements = {
@@ -155,11 +175,15 @@ function initializeEventListeners() {
 }
 
 function updateAPIEndpointDisplay() {
-    if (CONFIG.DEMO_MODE) {
+    if (CONFIG.BROWSER_LIB_MODE && browserLib) {
+        elements.apiEndpoint.textContent = 'Browser Library Mode - Real transliteration in browser';
+        elements.apiEndpoint.style.color = '#22c55e';
+    } else if (CONFIG.DEMO_MODE) {
         elements.apiEndpoint.textContent = 'Demo Mode - Using mock responses';
         elements.apiEndpoint.style.color = '#f59e0b';
     } else {
         elements.apiEndpoint.textContent = CONFIG.API_ENDPOINT;
+        elements.apiEndpoint.style.color = '#333';
     }
 }
 
@@ -227,7 +251,10 @@ async function makeTransliterationRequest(data) {
 
         let response;
         
-        if (CONFIG.DEMO_MODE) {
+        if (CONFIG.BROWSER_LIB_MODE && browserLib) {
+            // Use browser transliteration library
+            response = await callBrowserLib(data);
+        } else if (CONFIG.DEMO_MODE) {
             // Use demo responses
             response = await simulateAPICall(data);
         } else {
@@ -240,6 +267,20 @@ async function makeTransliterationRequest(data) {
     } catch (error) {
         console.error('Error:', error);
         showError(error.message || 'An unexpected error occurred');
+    }
+}
+
+async function callBrowserLib(data) {
+    // Simulate slight processing delay for UX
+    await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 500));
+    
+    try {
+        const result = await browserLib.transliterate(data);
+        return result;
+    } catch (error) {
+        console.error('Browser library error:', error);
+        // Fallback to demo mode
+        return await simulateAPICall(data);
     }
 }
 
@@ -357,12 +398,31 @@ function hideAllStates() {
 
 function formatMethodName(method) {
     const methodNames = {
+        // Browser library methods
+        'arabic_transliterate_browser': 'Arabic → Latin (Browser)',
+        'japanese_romaji_browser': 'Japanese → Romaji (Browser)',
+        'korean_romanize_browser': 'Korean → Latin (Browser)',
+        'chinese_pinyin_browser': 'Chinese → Pinyin (Browser)',
+        'cyrillic_latin_browser': 'Cyrillic → Latin (Browser)',
+        'thai_latin_browser': 'Thai → Latin (Browser)',
+        'latin_passthrough': 'Latin (No Translation)',
+        'general_transliteration_browser': 'General Browser Transliteration',
+        
+        // Legacy/demo methods
         'arabic_transliterate': 'Arabic Transliterate',
         'kuroshiro': 'Kuroshiro (Japanese)',
         'korean_romanize': 'Korean Romanize',
         'general_transliteration': 'General Transliteration',
         'exact_match': 'Exact Match',
-        'original_text_fallback': 'Original Text (Fallback)'
+        'original_text_fallback': 'Original Text (Fallback)',
+        
+        // Demo fallback methods
+        'arabic_transliterate_demo': 'Arabic Demo',
+        'japanese_romaji_demo': 'Japanese Demo',
+        'korean_romanize_demo': 'Korean Demo',
+        'chinese_pinyin_demo': 'Chinese Demo',
+        'cyrillic_latin_demo': 'Russian Demo',
+        'thai_latin_demo': 'Thai Demo'
     };
     
     return methodNames[method] || method.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -377,26 +437,54 @@ function showDocumentation() {
 function updateAPIEndpoint(newEndpoint) {
     CONFIG.API_ENDPOINT = newEndpoint;
     CONFIG.DEMO_MODE = false;
+    CONFIG.BROWSER_LIB_MODE = false;
     updateAPIEndpointDisplay();
     console.log('API endpoint updated to:', newEndpoint);
+}
+
+// Enable browser library mode
+function enableBrowserLib() {
+    CONFIG.BROWSER_LIB_MODE = true;
+    CONFIG.DEMO_MODE = false;
+    if (!browserLib) {
+        initializeBrowserLib();
+    }
+    updateAPIEndpointDisplay();
+    console.log('Browser library mode enabled');
+}
+
+// Enable demo mode
+function enableDemoMode() {
+    CONFIG.DEMO_MODE = true;
+    CONFIG.BROWSER_LIB_MODE = false;
+    updateAPIEndpointDisplay();
+    console.log('Demo mode enabled');
 }
 
 // Console helpers for developers
 console.log('🌍 Lambda Transliterate Names Demo');
 console.log('📡 API Endpoint:', CONFIG.API_ENDPOINT);
 console.log('🧪 Demo Mode:', CONFIG.DEMO_MODE);
+console.log('🔧 Browser Library Mode:', CONFIG.BROWSER_LIB_MODE);
+console.log('📚 Library Info:', browserLib ? browserLib.getInfo() : 'Not loaded');
 console.log('');
-console.log('💡 To use your own API endpoint:');
+console.log('💡 Configuration options:');
 console.log('   updateAPIEndpoint("https://your-api-gateway-url.com/transliterate")');
+console.log('   enableBrowserLib() - Use real transliteration in browser');
+console.log('   enableDemoMode() - Use mock responses');
 console.log('');
 console.log('🔧 Available functions:');
 console.log('   - updateAPIEndpoint(url) - Set your API endpoint');
+console.log('   - enableBrowserLib() - Enable browser transliteration');
+console.log('   - enableDemoMode() - Enable demo mode');
 console.log('   - runExample(data) - Test with example data');
 console.log('   - makeTransliterationRequest(data) - Direct API call');
 console.log('   - showDocumentation() - View documentation');
 
 // Export functions for console access
 window.updateAPIEndpoint = updateAPIEndpoint;
+window.enableBrowserLib = enableBrowserLib;
+window.enableDemoMode = enableDemoMode;
 window.runExample = runExample;
 window.makeTransliterationRequest = makeTransliterationRequest;
 window.showDocumentation = showDocumentation; 
