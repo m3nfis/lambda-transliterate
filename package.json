@@ -1,6 +1,6 @@
 {
   "name": "lambda-transliterate",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "AWS Lambda service for transliterating names from various scripts to Latin",
   "main": "index.js",
   "scripts": {
