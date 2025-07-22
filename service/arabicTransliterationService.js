@@ -285,8 +285,13 @@ class ArabicTransliterationService {
       throw new Error('Missing required fields: firstName, country');
     }
 
-    if (country !== 'EG') {
-      throw new Error('Arabic transliteration service only supports EG country code');
+    // Check if the country uses Arabic script
+    const arabicCountries = [
+      'SA', 'EG', 'AE', 'QA', 'KW', 'BH', 'OM', 'JO', 'LB', 'SY', 'IQ', 'IR', 'AF', 'PK', 'BD', 'MV', 'DJ', 'SO', 'ER', 'TD', 'SD', 'LY', 'TN', 'DZ', 'MA', 'MR', 'NE', 'ML', 'BF', 'SN', 'GN', 'GW', 'SL', 'LR', 'TG', 'BJ', 'CV', 'ST', 'CM', 'NG', 'GH', 'CI', 'GQ', 'GA', 'CG', 'CF', 'SS', 'ET', 'KM', 'MG', 'MU', 'SC', 'YE', 'IL', 'PS', 'TR', 'AZ', 'UZ', 'KZ', 'KG', 'TJ', 'TM', 'XK'
+    ];
+    
+    if (!arabicCountries.includes(country)) {
+      console.warn(`Warning: Country ${country} is not in the Arabic script countries list, but proceeding with Arabic transliteration`);
     }
 
     // Detect if the names are actually Arabic

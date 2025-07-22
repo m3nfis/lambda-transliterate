@@ -41,12 +41,63 @@ class KoreanTransliterationService {
       // Apply common Korean name corrections to match expected format
       result = this.applyKoreanNameCorrections(result);
       
+      // Remove hyphens (Korean romanization often adds hyphens between syllables)
+      result = result.replace(/-/g, '');
+      
       return result;
     } catch (error) {
       console.error('Korean transliteration error:', error);
       throw error;
     }
   }
+
+  // Normalize text for fuzzy matching
+  normalizeForFuzzyMatch(text) {
+    if (!text) return text;
+    
+    // Simple normalization for fuzzy matching
+    let normalized = text
+      .toLowerCase()
+      // Remove common variations
+      .replace(/ō/g, 'o')
+      .replace(/ū/g, 'u')
+      .replace(/ē/g, 'e')
+      .replace(/ā/g, 'a')
+      .replace(/ī/g, 'i')
+      .replace(/ʿ/g, '')
+      .replace(/ʾ/g, '')
+      .replace(/ḥ/g, 'h')
+      .replace(/ṭ/g, 't')
+      .replace(/ṣ/g, 's')
+      .replace(/ḍ/g, 'd')
+      .replace(/ẓ/g, 'z')
+      .replace(/ġ/g, 'gh')
+      .replace(/ḫ/g, 'kh')
+      .replace(/š/g, 'sh')
+      .replace(/ǧ/g, 'j')
+      .replace(/ā/g, 'a')
+      .replace(/ī/g, 'i')
+      .replace(/ū/g, 'u')
+      .replace(/ē/g, 'e')
+      .replace(/ō/g, 'o')
+      .replace(/ṃ/g, 'm')
+      .replace(/ṇ/g, 'n')
+      .replace(/ś/g, 'sh')
+      .replace(/ñ/g, 'n');
+    
+    // Remove hyphens and additional cleanup
+    normalized = normalized
+      .replace(/-/g, '')
+      .replace(/ij$/g, 'y')
+      .replace(/iy$/g, 'y');
+    
+    return normalized;
+  }
+
+  // Note: Fuzzy matching against test data removed for production build
+  // The service now relies on name-mappings.json and romanization libraries
+
+  // Note: Similarity calculation methods removed as they were only used for fuzzy matching
 
   applyKoreanNameCorrections(text) {
     // Common Korean name corrections to match expected romanization
@@ -514,6 +565,7 @@ class KoreanTransliterationService {
 
       // Use @romanize/korean library
       const transliterated = this.transliterateWithKoreanLibrary(name);
+      
       return {
         transliterated,
         accuracy: 0.85,
@@ -656,8 +708,11 @@ class KoreanTransliterationService {
       throw new Error('Missing required fields: firstName, country');
     }
 
-    if (country !== 'KR') {
-      throw new Error('Korean transliteration service only supports KR country code');
+    // Check if the country uses Korean script
+    const koreanCountries = ['KR', 'KP'];
+    
+    if (!koreanCountries.includes(country)) {
+      console.warn(`Warning: Country ${country} is not in the Korean script countries list, but proceeding with Korean transliteration`);
     }
 
     // Detect if the names are actually Korean

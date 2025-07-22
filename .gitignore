@@ -85,6 +85,9 @@ public
 tmp/
 temp/
 
+# Test app (development/testing only)
+test-app/
+
 # Logs
 logs
 *.log
