@@ -1,0 +1,1990 @@
+{
+  "countryToScriptMap": {
+    "US": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Armn",
+        "script_name": "Armenian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "GB": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "DE": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "FR": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Armn",
+        "script_name": "Armenian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "IT": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "ES": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "PT": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "NL": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "BE": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "CH": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "AT": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "SE": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "NO": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "DK": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "FI": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "PL": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "CZ": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "HU": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "RO": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "BG": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "HR": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "SI": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "SK": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "EE": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "LV": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "LT": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "IE": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "CA": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "AU": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "NZ": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "BR": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "AR": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "MX": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "CO": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "PE": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "VE": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "CL": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "EC": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "BO": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "PY": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "UY": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "GY": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "SR": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "GF": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "FK": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "ZA": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "NA": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "BW": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "ZW": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "ZM": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "MW": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "MZ": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "SZ": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "LS": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "MG": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "MU": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "SC": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "KM": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "DJ": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "SO": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "ET": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "ER": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "SS": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "TD": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "CF": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "CG": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "GA": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "GQ": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "CM": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "NG": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "GH": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "CI": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "BF": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "ML": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "NE": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "SN": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "GN": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "GW": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "SL": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "LR": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "TG": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "BJ": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "CV": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "ST": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "PH": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "ID": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "MY": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Hans",
+        "script_name": "Chinese (Simplified)",
+        "usage_percentage": 18.7
+      },
+      {
+        "script_code": "Taml",
+        "script_name": "Tamil",
+        "usage_percentage": 1.1
+      }
+    ],
+    "SG": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Hans",
+        "script_name": "Chinese (Simplified)",
+        "usage_percentage": 18.7
+      },
+      {
+        "script_code": "Hani",
+        "script_name": "Japanese (Kanji)",
+        "usage_percentage": 1.5
+      },
+      {
+        "script_code": "Taml",
+        "script_name": "Tamil",
+        "usage_percentage": 1.1
+      }
+    ],
+    "BN": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "TL": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "FJ": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Deva",
+        "script_name": "Devanagari",
+        "usage_percentage": 4.8
+      }
+    ],
+    "PG": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "SB": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "VU": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "NC": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "PF": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "TO": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "WS": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "AS": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "GU": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "MP": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "VI": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "PR": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "DO": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "HT": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "JM": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "BB": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "GD": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "LC": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "VC": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "AG": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "KN": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "DM": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "TT": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "BS": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "TC": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "KY": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "BM": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "AI": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "VG": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "MS": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "AW": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "CW": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "SX": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "BQ": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "BL": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "MF": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "GP": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "MQ": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "RE": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "YT": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "PM": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "WF": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "TF": [
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      },
+      {
+        "script_code": "Latn",
+        "script_name": "Latin",
+        "usage_percentage": 45.2
+      }
+    ],
+    "CN": [
+      {
+        "script_code": "Hans",
+        "script_name": "Chinese (Simplified)",
+        "usage_percentage": 18.7
+      },
+      {
+        "script_code": "Hani",
+        "script_name": "Japanese (Kanji)",
+        "usage_percentage": 1.5
+      },
+      {
+        "script_code": "Tibt",
+        "script_name": "Tibetan",
+        "usage_percentage": 0.1
+      },
+      {
+        "script_code": "Mong",
+        "script_name": "Mongolian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "TW": [
+      {
+        "script_code": "Hant",
+        "script_name": "Chinese (Traditional)",
+        "usage_percentage": 3.2
+      },
+      {
+        "script_code": "Hani",
+        "script_name": "Japanese (Kanji)",
+        "usage_percentage": 1.5
+      }
+    ],
+    "HK": [
+      {
+        "script_code": "Hant",
+        "script_name": "Chinese (Traditional)",
+        "usage_percentage": 3.2
+      },
+      {
+        "script_code": "Hani",
+        "script_name": "Japanese (Kanji)",
+        "usage_percentage": 1.5
+      }
+    ],
+    "MO": [
+      {
+        "script_code": "Hant",
+        "script_name": "Chinese (Traditional)",
+        "usage_percentage": 3.2
+      },
+      {
+        "script_code": "Hani",
+        "script_name": "Japanese (Kanji)",
+        "usage_percentage": 1.5
+      }
+    ],
+    "SA": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "EG": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "AE": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "QA": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "KW": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "BH": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "OM": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "JO": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "LB": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Armn",
+        "script_name": "Armenian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "SY": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Armn",
+        "script_name": "Armenian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "IQ": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "IR": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Armn",
+        "script_name": "Armenian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "AF": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "PK": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Guru",
+        "script_name": "Gurmukhi",
+        "usage_percentage": 0.6
+      }
+    ],
+    "BD": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Beng",
+        "script_name": "Bengali",
+        "usage_percentage": 2.1
+      }
+    ],
+    "MV": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "SD": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "LY": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "TN": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "DZ": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "MA": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "MR": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "YE": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "IL": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "PS": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      }
+    ],
+    "TR": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Armn",
+        "script_name": "Armenian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "AZ": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      },
+      {
+        "script_code": "Armn",
+        "script_name": "Armenian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "UZ": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "KZ": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "KG": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "TJ": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "TM": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "XK": [
+      {
+        "script_code": "Arab",
+        "script_name": "Arabic",
+        "usage_percentage": 8.1
+      },
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "IN": [
+      {
+        "script_code": "Deva",
+        "script_name": "Devanagari",
+        "usage_percentage": 4.8
+      },
+      {
+        "script_code": "Beng",
+        "script_name": "Bengali",
+        "usage_percentage": 2.1
+      },
+      {
+        "script_code": "Telu",
+        "script_name": "Telugu",
+        "usage_percentage": 1.2
+      },
+      {
+        "script_code": "Taml",
+        "script_name": "Tamil",
+        "usage_percentage": 1.1
+      },
+      {
+        "script_code": "Gujr",
+        "script_name": "Gujarati",
+        "usage_percentage": 0.9
+      },
+      {
+        "script_code": "Knda",
+        "script_name": "Kannada",
+        "usage_percentage": 0.8
+      },
+      {
+        "script_code": "Mlym",
+        "script_name": "Malayalam",
+        "usage_percentage": 0.7
+      },
+      {
+        "script_code": "Guru",
+        "script_name": "Gurmukhi",
+        "usage_percentage": 0.6
+      },
+      {
+        "script_code": "Orya",
+        "script_name": "Odia",
+        "usage_percentage": 0.5
+      },
+      {
+        "script_code": "Tibt",
+        "script_name": "Tibetan",
+        "usage_percentage": 0.1
+      }
+    ],
+    "NP": [
+      {
+        "script_code": "Deva",
+        "script_name": "Devanagari",
+        "usage_percentage": 4.8
+      },
+      {
+        "script_code": "Tibt",
+        "script_name": "Tibetan",
+        "usage_percentage": 0.1
+      }
+    ],
+    "RU": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      },
+      {
+        "script_code": "Armn",
+        "script_name": "Armenian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "BY": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "UA": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "RS": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "ME": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "MK": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "BA": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "MD": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      }
+    ],
+    "GE": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      },
+      {
+        "script_code": "Geor",
+        "script_name": "Georgian",
+        "usage_percentage": 0.1
+      },
+      {
+        "script_code": "Armn",
+        "script_name": "Armenian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "AM": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      },
+      {
+        "script_code": "Armn",
+        "script_name": "Armenian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "MN": [
+      {
+        "script_code": "Cyrl",
+        "script_name": "Cyrillic",
+        "usage_percentage": 4.2
+      },
+      {
+        "script_code": "Mong",
+        "script_name": "Mongolian",
+        "usage_percentage": 0.1
+      }
+    ],
+    "TH": [
+      {
+        "script_code": "Thai",
+        "script_name": "Thai",
+        "usage_percentage": 1.8
+      }
+    ],
+    "KR": [
+      {
+        "script_code": "Hang",
+        "script_name": "Hangul",
+        "usage_percentage": 1.6
+      },
+      {
+        "script_code": "Hani",
+        "script_name": "Japanese (Kanji)",
+        "usage_percentage": 1.5
+      }
+    ],
+    "KP": [
+      {
+        "script_code": "Hang",
+        "script_name": "Hangul",
+        "usage_percentage": 1.6
+      }
+    ],
+    "JP": [
+      {
+        "script_code": "Hani",
+        "script_name": "Japanese (Kanji)",
+        "usage_percentage": 1.5
+      },
+      {
+        "script_code": "Hira",
+        "script_name": "Japanese (Hiragana)",
+        "usage_percentage": 1.5
+      },
+      {
+        "script_code": "Kana",
+        "script_name": "Japanese (Katakana)",
+        "usage_percentage": 1.5
+      }
+    ],
+    "LK": [
+      {
+        "script_code": "Taml",
+        "script_name": "Tamil",
+        "usage_percentage": 1.1
+      },
+      {
+        "script_code": "Sinh",
+        "script_name": "Sinhala",
+        "usage_percentage": 0.4
+      }
+    ],
+    "MM": [
+      {
+        "script_code": "Mymr",
+        "script_name": "Burmese",
+        "usage_percentage": 0.3
+      }
+    ],
+    "KH": [
+      {
+        "script_code": "Khmr",
+        "script_name": "Khmer",
+        "usage_percentage": 0.2
+      }
+    ],
+    "LA": [
+      {
+        "script_code": "Laoo",
+        "script_name": "Lao",
+        "usage_percentage": 0.2
+      }
+    ],
+    "BT": [
+      {
+        "script_code": "Tibt",
+        "script_name": "Tibetan",
+        "usage_percentage": 0.1
+      }
+    ]
+  },
+  "metadata": {
+    "source": "most-used-scripts.json",
+    "total_countries": 193,
+    "last_updated": "2025-07-22T14:02:23.915Z"
+  }
+}

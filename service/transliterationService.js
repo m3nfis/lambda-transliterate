@@ -1,9 +1,19 @@
 const fs = require('fs');
 const transliteration = require('transliteration');
-const pinyin = require('pinyin');
+const { pinyin } = require('pinyin');
 const JapaneseTransliterationService = require('./japaneseTransliterationService');
 const ArabicTransliterationService = require('./arabicTransliterationService');
 const KoreanTransliterationService = require('./koreanTransliterationService');
+
+// Load country to script mapping
+let countryToScriptMap = {};
+try {
+  const mappingData = JSON.parse(fs.readFileSync('./country-script-mapping.json', 'utf8'));
+  countryToScriptMap = mappingData.countryToScriptMap || {};
+} catch (error) {
+  console.warn('Warning: Could not load country-script-mapping.json');
+  countryToScriptMap = {};
+}
 
 // Load test data as source of truth
 let testData = {};
@@ -43,9 +53,11 @@ class TransliterationService {
   }
 
   detectScript(text) {
-    // Enhanced script detection
-    const hasChinese = /[\u4e00-\u9fff]/.test(text);
-    const hasJapanese = /[\u3040-\u309f\u30a0-\u30ff]/.test(text);
+    // Enhanced script detection with Japanese priority
+    const hasHiragana = /[\u3040-\u309f]/.test(text);
+    const hasKatakana = /[\u30a0-\u30ff]/.test(text);
+    const hasJapanese = hasHiragana || hasKatakana;
+    const hasKanji = /[\u4e00-\u9fff]/.test(text);
     const hasKorean = /[\uac00-\ud7af]/.test(text);
     const hasArabic = /[\u0600-\u06ff\u0750-\u077f\u08a0-\u08ff\ufb50-\ufdff\ufe70-\ufeff]/.test(text);
     const hasRussian = /[\u0400-\u04ff]/.test(text);
@@ -53,8 +65,21 @@ class TransliterationService {
     const hasGreek = /[\u0370-\u03ff]/.test(text);
     const hasThai = /[\u0e00-\u0e7f]/.test(text);
 
-    if (hasJapanese) return 'japanese';
-    if (hasChinese) return 'chinese';
+    // Japanese detection with priority
+    if (hasJapanese || hasKanji) {
+      // Check for Japanese-specific patterns
+      const japanesePatterns = [
+        /[々〻]/, // Japanese iteration marks
+        /[ぁ-んァ-ン]/, // Hiragana/Katakana
+        /[一-龯]/, // Kanji range
+      ];
+      
+      // If it contains Japanese-specific characters or patterns, treat as Japanese
+      if (japanesePatterns.some(pattern => pattern.test(text))) {
+        return 'japanese';
+      }
+    }
+    
     if (hasKorean) return 'korean';
     if (hasArabic) return 'arabic';
     if (hasRussian) return 'russian';
@@ -73,7 +98,38 @@ class TransliterationService {
       throw new Error('Missing required fields: firstName, country');
     }
 
-    // First, check for exact match in test data
+    // First, try country-based routing (highest priority)
+    try {
+      // Country-based routing for specific countries
+      switch (country) {
+        case 'JP':
+          return await this.japaneseService.transliterate(input);
+        case 'KR':
+          return await this.koreanService.transliterate(input);
+        case 'CN':
+        case 'TW':
+        case 'HK':
+        case 'MO':
+          return await this.transliterateChinese(input);
+        case 'EG':
+        case 'SA':
+        case 'AE':
+        case 'QA':
+        case 'KW':
+        case 'BH':
+        case 'OM':
+        case 'JO':
+        case 'LB':
+        case 'SY':
+        case 'IQ':
+        case 'YE':
+          return await this.arabicService.transliterate(input);
+      }
+    } catch (error) {
+      console.warn(`Country-based routing failed for ${country}:`, error.message);
+    }
+
+    // Second, check for exact match in test data
     const exactMatchKey = `${firstName}|${lastName || ''}`;
     if (exactMatches[country] && exactMatches[country][exactMatchKey]) {
       const match = exactMatches[country][exactMatchKey];
@@ -86,40 +142,88 @@ class TransliterationService {
       };
     }
 
-    // Detect script
+    // Fall back to script detection
     const firstNameScript = this.detectScript(firstName);
     const lastNameScript = lastName ? this.detectScript(lastName) : 'latin';
     const script = firstNameScript !== 'latin' ? firstNameScript : lastNameScript;
 
-    // Route to appropriate service based on country and script
+    // Route to appropriate service based on detected script and country context
     try {
-      switch (country) {
-        case 'JP':
+      // Get expected scripts for this country
+      const expectedScripts = countryToScriptMap[country] || [];
+      
+      // Route based on detected script with country context
+      switch (script) {
+        case 'japanese':
           return await this.japaneseService.transliterate(input);
         
-        case 'EG':
+        case 'arabic':
           return await this.arabicService.transliterate(input);
         
-        case 'KR':
+        case 'korean':
           return await this.koreanService.transliterate(input);
         
-        case 'CN':
-          return await this.transliterateChinese(input);
-        
-        case 'RU':
+        case 'russian':
           return await this.transliterateRussian(input);
         
-        case 'IN':
+        case 'hindi':
           return await this.transliterateHindi(input);
         
-        case 'GR':
+        case 'greek':
           return await this.transliterateGreek(input);
         
-        case 'TH':
+        case 'thai':
           return await this.transliterateThai(input);
         
+        case 'latin':
+          // For Latin script, use general transliteration
+          return await this.transliterateGeneral(input);
+        
         default:
-          // For other countries, use general transliteration
+          // For unknown scripts, try to route based on country's expected scripts
+          if (expectedScripts.length > 0) {
+            const primaryScript = expectedScripts[0].script_code;
+            
+            // Map script codes to our script detection names
+            const scriptCodeToName = {
+              'Hani': 'japanese', // Japanese Kanji and Chinese characters - route to Japanese
+              'Hira': 'japanese',
+              'Kana': 'japanese',
+              'Hans': 'japanese', // Simplified Chinese - route to Japanese for now
+              'Hant': 'japanese', // Traditional Chinese - route to Japanese for now
+              'Arab': 'arabic',
+              'Hang': 'korean',
+              'Cyrl': 'russian',
+              'Deva': 'hindi',
+              'Grek': 'greek',
+              'Thai': 'thai',
+              'Latn': 'latin'
+            };
+            
+            const scriptName = scriptCodeToName[primaryScript];
+            if (scriptName) {
+              console.log(`Routing ${country} (${primaryScript}) to ${scriptName} transliteration`);
+              
+              switch (scriptName) {
+                case 'japanese':
+                  return await this.japaneseService.transliterate(input);
+                case 'arabic':
+                  return await this.arabicService.transliterate(input);
+                case 'korean':
+                  return await this.koreanService.transliterate(input);
+                case 'russian':
+                  return await this.transliterateRussian(input);
+                case 'hindi':
+                  return await this.transliterateHindi(input);
+                case 'greek':
+                  return await this.transliterateGreek(input);
+                case 'thai':
+                  return await this.transliterateThai(input);
+              }
+            }
+          }
+          
+          // Final fallback to general transliteration
           return await this.transliterateGeneral(input);
       }
     } catch (error) {
@@ -135,12 +239,12 @@ class TransliterationService {
     
     try {
       const firstNamePinyin = pinyin(firstName, {
-        style: pinyin.STYLE_NORMAL,
+        style: 'normal',
         heteronym: false
       }).flat().join('');
       
       const lastNamePinyin = lastName ? pinyin(lastName, {
-        style: pinyin.STYLE_NORMAL,
+        style: 'normal',
         heteronym: false
       }).flat().join('') : '';
       

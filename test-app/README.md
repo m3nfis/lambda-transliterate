@@ -37,17 +37,43 @@ The app will start on `http://localhost:3001`
   "firstName": "太郎",
   "lastName": "田中",
   "country": "JP",
-  "learn": false
+  "learn": false,
+  "normalized": false
 }
 ```
 
-**Response:**
+**Parameters:**
+- `firstName` (required): First name in original script
+- `lastName` (required): Last name in original script  
+- `country` (required): Two-letter country code (e.g., "JP", "CN", "EG")
+- `learn` (optional): Set to `true` to log for expert review (default: `false`)
+- `normalized` (optional): Set to `false` to get original transliteration with diacritics (default: `true`)
+
+**Response (normalized=true - default):**
 ```json
 {
   "firstName": "Taro",
   "lastName": "Tanaka",
   "country": "JP",
-  "script": "Jpan"
+  "accuracy": 1.0,
+  "method": "exact_match_from_test_data",
+  "normalized": true,
+  "originalTransliteration": {
+    "firstName": "Tarō",
+    "lastName": "Tanaka"
+  }
+}
+```
+
+**Response (normalized=false):**
+```json
+{
+  "firstName": "Tarō",
+  "lastName": "Tanaka",
+  "country": "JP",
+  "accuracy": 1.0,
+  "method": "exact_match_from_test_data",
+  "normalized": false
 }
 ```
 
@@ -82,6 +108,30 @@ curl -X POST http://localhost:3001/transliterate \
     "lastName": "علي",
     "country": "EG",
     "learn": true
+  }'
+```
+
+#### Normalized Transliteration (No Diacritics)
+```bash
+curl -X POST http://localhost:3001/transliterate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "firstName": "太郎",
+    "lastName": "田中",
+    "country": "JP",
+    "normalized": true
+  }'
+```
+
+#### Arabic with Normalization
+```bash
+curl -X POST http://localhost:3001/transliterate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "firstName": "محمد",
+    "lastName": "علي",
+    "country": "EG",
+    "normalized": true
   }'
 ```
 
@@ -208,6 +258,25 @@ When you set `"learn": true` in your request:
 2. This data is meant to be reviewed by experts for accuracy
 3. Use this for names that are NOT in the existing `test-data.json`
 4. Experts can review and potentially add these to the main name mappings
+
+## Normalization Feature
+
+The `normalized=true` parameter removes diacritical marks and normalizes transliterations for practical use:
+
+### Examples:
+- **Japanese:** 太郎 → "Tarō" (normalized=false) vs "Taro" (normalized=true)
+- **Arabic:** محمد → "Muḥammad" (normalized=false) vs "Muhammad" (normalized=true)
+- **Russian:** Дмитрий → "Dmitrij" (normalized=false) vs "Dmitry" (normalized=true)
+
+### Normalization Rules:
+- **Japanese macrons:** ō → o, ū → u, ē → e, ā → a, ī → i
+- **Arabic diacritics:** ʿ → (removed), ʾ → (removed), ḥ → h, ṭ → t, etc.
+- **Russian variations:** -ij/-iy → -y (Dmitrij/Dmitriy → Dmitry)
+- **Hindi diacritics:** ā → a, ī → i, ū → u, ś → sh, etc.
+
+When `normalized=true`, the response includes:
+- `normalized: true` flag
+- `originalTransliteration` object with the non-normalized version
 
 ## Error Handling
 

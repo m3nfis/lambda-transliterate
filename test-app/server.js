@@ -3,9 +3,14 @@ const cors = require('cors');
 const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
+const transliteration = require('transliteration');
+const FuzzySearch = require('fuzzy-search');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Set the working directory to the parent folder so the service can find the data files
+process.chdir(path.join(__dirname, '..'));
 
 // Middleware
 app.use(cors());
@@ -79,12 +84,62 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Robust normalization function using transliteration library
+function normalizeLatinText(text) {
+  if (!text) return text;
+  
+  // Use transliteration library for robust normalization
+  let normalized = transliteration.transliterate(text);
+  
+  // Apply specific custom mappings for better results
+  normalized = normalized
+    // Japanese macrons
+    .replace(/ō/g, 'o')
+    .replace(/ū/g, 'u')
+    .replace(/ē/g, 'e')
+    .replace(/ā/g, 'a')
+    .replace(/ī/g, 'i')
+    
+    // Arabic diacritics
+    .replace(/ʿ/g, '') // ayin
+    .replace(/ʾ/g, '') // hamza
+    .replace(/ḥ/g, 'h') // h with dot
+    .replace(/ṭ/g, 't') // t with dot
+    .replace(/ṣ/g, 's') // s with dot
+    .replace(/ḍ/g, 'd') // d with dot
+    .replace(/ẓ/g, 'z') // z with dot
+    .replace(/ġ/g, 'gh') // gh with dot
+    .replace(/ḫ/g, 'kh') // kh with dot
+    .replace(/š/g, 'sh') // sh with dot
+    .replace(/ǧ/g, 'j') // j with dot
+    
+    // Russian/Cyrillic transliteration variations
+    .replace(/ij$/g, 'y') // Dmitrij -> Dmitry
+    .replace(/iy$/g, 'y') // Dmitriy -> Dmitry
+    
+    // Hindi diacritics
+    .replace(/ā/g, 'a')
+    .replace(/ī/g, 'i')
+    .replace(/ū/g, 'u')
+    .replace(/ē/g, 'e')
+    .replace(/ō/g, 'o')
+    .replace(/ṃ/g, 'm')
+    .replace(/ṇ/g, 'n')
+    .replace(/ś/g, 'sh')
+    .replace(/ñ/g, 'n')
+    
+    // Remove hyphens (especially for Korean)
+    .replace(/-/g, '');
+  
+  return normalized;
+}
+
 // Main transliteration endpoint
 app.post('/transliterate', async (req, res) => {
-  const { firstName, lastName, country, learn = false } = req.body;
+  const { firstName, lastName, country, learn = false, normalized = true } = req.body;
   
   // Log the request
-  logApiCall({ firstName, lastName, country, learn }, learn);
+  logApiCall({ firstName, lastName, country, learn, normalized }, learn);
   
   // Validate required fields
   if (!firstName || !lastName || !country) {
@@ -94,7 +149,7 @@ app.post('/transliterate', async (req, res) => {
       code: 'VALIDATION_ERROR'
     };
     
-    updateLogEntry({ firstName, lastName, country, learn }, errorResponse, learn);
+    updateLogEntry({ firstName, lastName, country, learn, normalized }, errorResponse, learn);
     return res.status(400).json(errorResponse);
   }
 
@@ -106,7 +161,7 @@ app.post('/transliterate', async (req, res) => {
       code: 'VALIDATION_ERROR'
     };
     
-    updateLogEntry({ firstName, lastName, country, learn }, errorResponse, learn);
+    updateLogEntry({ firstName, lastName, country, learn, normalized }, errorResponse, learn);
     return res.status(400).json(errorResponse);
   }
 
@@ -118,8 +173,27 @@ app.post('/transliterate', async (req, res) => {
       country: country.toUpperCase()
     });
 
+          // Apply normalization by default, unless explicitly disabled
+      if (normalized && result && !result.error) {
+        const originalFirstName = result.firstName;
+        const originalLastName = result.lastName;
+        
+        result.firstName = normalizeLatinText(result.firstName);
+        result.lastName = normalizeLatinText(result.lastName);
+        
+        // Add normalization info to response
+        result.normalized = true;
+        result.originalTransliteration = {
+          firstName: originalFirstName,
+          lastName: originalLastName
+        };
+      } else if (!normalized && result && !result.error) {
+        // If normalization is explicitly disabled, return original form
+        result.normalized = false;
+      }
+
     // Log the response
-    updateLogEntry({ firstName, lastName, country, learn }, result, learn);
+    updateLogEntry({ firstName, lastName, country, learn, normalized }, result, learn);
     
     res.json(result);
 
@@ -132,7 +206,7 @@ app.post('/transliterate', async (req, res) => {
       code: 'INTERNAL_ERROR'
     };
 
-    updateLogEntry({ firstName, lastName, country, learn }, errorResponse, learn);
+    updateLogEntry({ firstName, lastName, country, learn, normalized }, errorResponse, learn);
     res.status(error.error ? 400 : 500).json(errorResponse);
   }
 });
