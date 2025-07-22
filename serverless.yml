@@ -1,0 +1,46 @@
+service: lambda-transliterate
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  memorySize: 512
+  timeout: 30
+  environment:
+    NODE_ENV: production
+
+functions:
+  transliterate:
+    handler: handler.transliterate
+    events:
+      - http:
+          path: transliterate
+          method: post
+          cors: true
+          request:
+            schemas:
+              application/json:
+                type: object
+                properties:
+                  firstName:
+                    type: string
+                    minLength: 1
+                  lastName:
+                    type: string
+                    minLength: 1
+                  country:
+                    type: string
+                    pattern: '^[A-Z]{2}$'
+                required:
+                  - firstName
+                  - lastName
+                  - country
+
+plugins:
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: webpack.config.js
+    includeModules: true
+    packager: 'npm' 

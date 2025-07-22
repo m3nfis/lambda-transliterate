@@ -1,0 +1,283 @@
+{
+  "most_used_scripts": [
+    {
+      "rank": 1,
+      "script_name": "Latin",
+      "script_code": "Latn",
+      "usage_percentage": 45.2,
+      "countries": [
+        "US", "GB", "DE", "FR", "IT", "ES", "PT", "NL", "BE", "CH", "AT", "SE", "NO", "DK", "FI", "PL", "CZ", "HU", "RO", "BG", "HR", "SI", "SK", "EE", "LV", "LT", "IE", "CA", "AU", "NZ", "BR", "AR", "MX", "CO", "PE", "VE", "CL", "EC", "BO", "PY", "UY", "GY", "SR", "GF", "FK", "ZA", "NA", "BW", "ZW", "ZM", "MW", "MZ", "SZ", "LS", "MG", "MU", "SC", "KM", "DJ", "SO", "ET", "ER", "SS", "TD", "CF", "CG", "GA", "GQ", "CM", "NG", "GH", "CI", "BF", "ML", "NE", "TD", "SN", "GN", "GW", "SL", "LR", "TG", "BJ", "CV", "ST", "PH", "ID", "MY", "SG", "BN", "TL", "FJ", "PG", "SB", "VU", "NC", "PF", "TO", "WS", "AS", "GU", "MP", "VI", "PR", "DO", "HT", "JM", "BB", "GD", "LC", "VC", "AG", "KN", "DM", "TT", "BS", "TC", "KY", "BM", "AI", "VG", "MS", "AW", "CW", "SX", "BQ", "BL", "MF", "GP", "MQ", "RE", "YT", "PM", "WF", "TF", "NC", "PF", "TO", "WS", "AS", "GU", "MP", "VI", "PR", "DO", "HT", "JM", "BB", "GD", "LC", "VC", "AG", "KN", "DM", "TT", "BS", "TC", "KY", "BM", "AI", "VG", "MS", "AW", "CW", "SX", "BQ", "BL", "MF", "GP", "MQ", "RE", "YT", "PM", "WF", "TF"
+      ],
+      "description": "Most widely used writing system globally, used in most European languages, Americas, and many other regions"
+    },
+    {
+      "rank": 2,
+      "script_name": "Chinese (Simplified)",
+      "script_code": "Hans",
+      "usage_percentage": 18.7,
+      "countries": [
+        "CN", "SG", "MY"
+      ],
+      "description": "Simplified Chinese characters used in mainland China, Singapore, and Malaysia"
+    },
+    {
+      "rank": 3,
+      "script_name": "Chinese (Traditional)",
+      "script_code": "Hant",
+      "usage_percentage": 3.2,
+      "countries": [
+        "TW", "HK", "MO"
+      ],
+      "description": "Traditional Chinese characters used in Taiwan, Hong Kong, and Macau"
+    },
+    {
+      "rank": 4,
+      "script_name": "Arabic",
+      "script_code": "Arab",
+      "usage_percentage": 8.1,
+      "countries": [
+        "SA", "EG", "AE", "QA", "KW", "BH", "OM", "JO", "LB", "SY", "IQ", "IR", "AF", "PK", "BD", "MV", "DJ", "SO", "ER", "TD", "SD", "LY", "TN", "DZ", "MA", "MR", "NE", "ML", "BF", "SN", "GN", "GW", "SL", "LR", "TG", "BJ", "CV", "ST", "CM", "NG", "GH", "CI", "GQ", "GA", "CG", "CF", "TD", "SS", "ET", "KM", "MG", "MU", "SC", "YE", "IL", "PS", "TR", "AZ", "UZ", "KZ", "KG", "TJ", "TM", "XK"
+      ],
+      "description": "Used for Arabic language and many other languages in the Middle East, North Africa, and parts of Asia"
+    },
+    {
+      "rank": 5,
+      "script_name": "Devanagari",
+      "script_code": "Deva",
+      "usage_percentage": 4.8,
+      "countries": [
+        "IN", "NP", "FJ"
+      ],
+      "description": "Used for Hindi, Marathi, Nepali, and other Indo-Aryan languages"
+    },
+    {
+      "rank": 6,
+      "script_name": "Cyrillic",
+      "script_code": "Cyrl",
+      "usage_percentage": 4.2,
+      "countries": [
+        "RU", "BY", "UA", "BG", "RS", "ME", "MK", "BA", "HR", "SI", "SK", "CZ", "PL", "MD", "RO", "KZ", "KG", "TJ", "TM", "UZ", "AZ", "GE", "AM", "MN", "XK"
+      ],
+      "description": "Used for Russian, Ukrainian, Bulgarian, Serbian, and other Slavic languages"
+    },
+    {
+      "rank": 7,
+      "script_name": "Bengali",
+      "script_code": "Beng",
+      "usage_percentage": 2.1,
+      "countries": [
+        "BD", "IN"
+      ],
+      "description": "Used for Bengali language in Bangladesh and India"
+    },
+    {
+      "rank": 8,
+      "script_name": "Thai",
+      "script_code": "Thai",
+      "usage_percentage": 1.8,
+      "countries": [
+        "TH"
+      ],
+      "description": "Used for Thai language in Thailand"
+    },
+    {
+      "rank": 9,
+      "script_name": "Hangul",
+      "script_code": "Hang",
+      "usage_percentage": 1.6,
+      "countries": [
+        "KR", "KP"
+      ],
+      "description": "Korean alphabet used in South Korea and North Korea"
+    },
+    {
+      "rank": 10,
+      "script_name": "Japanese (Kanji)",
+      "script_code": "Hani",
+      "usage_percentage": 1.5,
+      "countries": [
+        "JP", "CN", "TW", "HK", "MO", "KR", "SG"
+      ],
+      "description": "Chinese characters (Kanji) used in Japanese writing system, also used in Chinese and Korean contexts",
+      "script_type": "logographic"
+    },
+    {
+      "rank": 11,
+      "script_name": "Japanese (Hiragana)",
+      "script_code": "Hira",
+      "usage_percentage": 1.5,
+      "countries": [
+        "JP"
+      ],
+      "description": "Japanese syllabic script used for native Japanese words, grammatical particles, and verb endings",
+      "script_type": "syllabic"
+    },
+    {
+      "rank": 12,
+      "script_name": "Japanese (Katakana)",
+      "script_code": "Kana",
+      "usage_percentage": 1.5,
+      "countries": [
+        "JP"
+      ],
+      "description": "Japanese syllabic script used for foreign loanwords, onomatopoeia, and emphasis",
+      "script_type": "syllabic"
+    },
+    {
+      "rank": 13,
+      "script_name": "Telugu",
+      "script_code": "Telu",
+      "usage_percentage": 1.2,
+      "countries": [
+        "IN"
+      ],
+      "description": "Used for Telugu language in India"
+    },
+    {
+      "rank": 14,
+      "script_name": "Tamil",
+      "script_code": "Taml",
+      "usage_percentage": 1.1,
+      "countries": [
+        "IN", "LK", "SG", "MY"
+      ],
+      "description": "Used for Tamil language in India, Sri Lanka, Singapore, and Malaysia"
+    },
+    {
+      "rank": 15,
+      "script_name": "Gujarati",
+      "script_code": "Gujr",
+      "usage_percentage": 0.9,
+      "countries": [
+        "IN"
+      ],
+      "description": "Used for Gujarati language in India"
+    },
+    {
+      "rank": 16,
+      "script_name": "Kannada",
+      "script_code": "Knda",
+      "usage_percentage": 0.8,
+      "countries": [
+        "IN"
+      ],
+      "description": "Used for Kannada language in India"
+    },
+    {
+      "rank": 17,
+      "script_name": "Malayalam",
+      "script_code": "Mlym",
+      "usage_percentage": 0.7,
+      "countries": [
+        "IN"
+      ],
+      "description": "Used for Malayalam language in India"
+    },
+    {
+      "rank": 18,
+      "script_name": "Gurmukhi",
+      "script_code": "Guru",
+      "usage_percentage": 0.6,
+      "countries": [
+        "IN", "PK"
+      ],
+      "description": "Used for Punjabi language in India and Pakistan"
+    },
+    {
+      "rank": 19,
+      "script_name": "Odia",
+      "script_code": "Orya",
+      "usage_percentage": 0.5,
+      "countries": [
+        "IN"
+      ],
+      "description": "Used for Odia language in India"
+    },
+    {
+      "rank": 20,
+      "script_name": "Sinhala",
+      "script_code": "Sinh",
+      "usage_percentage": 0.4,
+      "countries": [
+        "LK"
+      ],
+      "description": "Used for Sinhala language in Sri Lanka"
+    },
+    {
+      "rank": 21,
+      "script_name": "Burmese",
+      "script_code": "Mymr",
+      "usage_percentage": 0.3,
+      "countries": [
+        "MM"
+      ],
+      "description": "Used for Burmese language in Myanmar"
+    },
+    {
+      "rank": 22,
+      "script_name": "Khmer",
+      "script_code": "Khmr",
+      "usage_percentage": 0.2,
+      "countries": [
+        "KH"
+      ],
+      "description": "Used for Khmer language in Cambodia"
+    },
+    {
+      "rank": 23,
+      "script_name": "Lao",
+      "script_code": "Laoo",
+      "usage_percentage": 0.2,
+      "countries": [
+        "LA"
+      ],
+      "description": "Used for Lao language in Laos"
+    },
+    {
+      "rank": 24,
+      "script_name": "Tibetan",
+      "script_code": "Tibt",
+      "usage_percentage": 0.1,
+      "countries": [
+        "CN", "IN", "NP", "BT"
+      ],
+      "description": "Used for Tibetan language in China, India, Nepal, and Bhutan"
+    },
+    {
+      "rank": 25,
+      "script_name": "Mongolian",
+      "script_code": "Mong",
+      "usage_percentage": 0.1,
+      "countries": [
+        "MN", "CN"
+      ],
+      "description": "Used for Mongolian language in Mongolia and China"
+    },
+    {
+      "rank": 26,
+      "script_name": "Georgian",
+      "script_code": "Geor",
+      "usage_percentage": 0.1,
+      "countries": [
+        "GE"
+      ],
+      "description": "Used for Georgian language in Georgia"
+    },
+    {
+      "rank": 27,
+      "script_name": "Armenian",
+      "script_code": "Armn",
+      "usage_percentage": 0.1,
+      "countries": [
+        "AM", "GE", "AZ", "TR", "IR", "SY", "LB", "US", "FR", "RU"
+      ],
+      "description": "Used for Armenian language in Armenia and Armenian diaspora"
+    }
+  ],
+  "metadata": {
+    "total_scripts": 27,
+    "data_source": "UNESCO, Ethnologue, and linguistic research",
+    "last_updated": "2024",
+    "notes": "Usage percentages are approximate and based on global population estimates. Some scripts may be used as secondary scripts in countries not listed. Country codes follow ISO 3166-1 alpha-2 standard. Japanese is broken down into its three component scripts (Kanji, Hiragana, Katakana) for better transliteration handling."
+  }
+} 

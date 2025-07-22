@@ -1,0 +1,66 @@
+{
+  "name": "lambda-transliterate",
+  "version": "1.0.0",
+  "description": "AWS Lambda service for transliterating names from various scripts to Latin",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test-runner.js",
+    "test:jest": "jest",
+    "build": "webpack --mode production",
+    "deploy": "serverless deploy",
+    "deploy:prod": "serverless deploy --stage=production",
+    "deploy:dev": "serverless deploy --stage=dev",
+    "clean": "rm -rf .serverless .webpack node_modules",
+    "install:clean": "npm run clean && npm install",
+    "start": "node handler.js",
+    "dev": "node --inspect handler.js"
+  },
+  "dependencies": {
+    "@romanize/korean": "^0.1.3",
+    "arabic-transliterate": "^1.0.1",
+    "kuroshiro": "^1.1.2",
+    "kuroshiro-analyzer-kuromoji": "^1.1.0",
+    "pinyin": "^3.0.0-alpha.18",
+    "transliteration": "^2.3.5"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "jest": "^29.0.0",
+    "serverless": "^3.0.0",
+    "serverless-webpack": "^5.11.0",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.0"
+  },
+  "keywords": [
+    "transliteration",
+    "romanization",
+    "lambda",
+    "aws",
+    "names",
+    "internationalization",
+    "i18n",
+    "multi-script",
+    "arabic",
+    "chinese",
+    "japanese",
+    "korean",
+    "russian",
+    "hindi",
+    "greek",
+    "thai"
+  ],
+  "author": "Multi-Script Transliteration Service Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/lambda-transliterate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/lambda-transliterate/issues"
+  },
+  "homepage": "https://github.com/your-username/lambda-transliterate#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
