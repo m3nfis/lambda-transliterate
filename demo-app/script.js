@@ -399,6 +399,7 @@ function hideAllStates() {
 function formatMethodName(method) {
     const methodNames = {
         // Browser library methods
+        'arabic_name_exact_match_browser': 'Arabic Name Match (Browser)',
         'arabic_transliterate_browser': 'Arabic → Latin (Browser)',
         'japanese_romaji_browser': 'Japanese → Romaji (Browser)',
         'korean_romanize_browser': 'Korean → Latin (Browser)',

@@ -16,14 +16,33 @@ class BrowserTransliterationLib {
      */
     initializeScriptMappings() {
         return {
-            // Arabic to Latin mapping (simplified IJMES)
+            // Arabic to Latin mapping with name recognition
             arabic: {
-                'ا': 'a', 'ب': 'b', 'ت': 't', 'ث': 'th', 'ج': 'j', 'ح': 'h', 'خ': 'kh',
-                'د': 'd', 'ذ': 'dh', 'ر': 'r', 'ز': 'z', 'س': 's', 'ش': 'sh', 'ص': 's',
-                'ض': 'd', 'ط': 't', 'ظ': 'z', 'ع': "'", 'غ': 'gh', 'ف': 'f', 'ق': 'q',
-                'ك': 'k', 'ل': 'l', 'م': 'm', 'ن': 'n', 'ه': 'h', 'و': 'w', 'ي': 'y',
-                'ى': 'a', 'ة': 'h', 'أ': 'a', 'إ': 'i', 'آ': 'aa', 'ؤ': 'u', 'ئ': 'i',
-                'َ': 'a', 'ُ': 'u', 'ِ': 'i', 'ْ': '', 'ً': 'an', 'ٌ': 'un', 'ٍ': 'in'
+                // Complete name mappings (most important - checked first)
+                names: {
+                    'محمد': 'Mohammed', 'علي': 'Ali', 'أحمد': 'Ahmed', 'فاطمة': 'Fatima',
+                    'عبدالله': 'Abdullah', 'عبد الله': 'Abdullah', 'حسن': 'Hassan', 'حسين': 'Hussein',
+                    'عمر': 'Omar', 'عثمان': 'Othman', 'خالد': 'Khalid', 'سعد': 'Saad',
+                    'عبدالرحمن': 'Abdulrahman', 'عبد الرحمن': 'Abdulrahman', 'ابراهيم': 'Ibrahim',
+                    'إبراهيم': 'Ibrahim', 'يوسف': 'Youssef', 'موسى': 'Musa', 'عيسى': 'Issa',
+                    'مريم': 'Mariam', 'عائشة': 'Aisha', 'خديجة': 'Khadija', 'زينب': 'Zeinab',
+                    'سارة': 'Sarah', 'ليلى': 'Layla', 'نور': 'Nour', 'حبيبة': 'Habiba',
+                    'كريم': 'Karim', 'عادل': 'Adel', 'سامي': 'Sami', 'طارق': 'Tarek',
+                    'نادر': 'Nader', 'مصطفى': 'Mostafa', 'صالح': 'Saleh', 'منى': 'Mona',
+                    'هند': 'Hind', 'سلمى': 'Salma', 'دينا': 'Dina', 'رنا': 'Rana',
+                    'حمد': 'Hamad', 'سلطان': 'Sultan', 'فهد': 'Fahad', 'بندر': 'Bandar',
+                    'تركي': 'Turki', 'ناصر': 'Nasser', 'سلمان': 'Salman', 'فيصل': 'Faisal'
+                },
+                
+                // Character mappings (fallback for unknown names)
+                chars: {
+                    'ا': 'a', 'ب': 'b', 'ت': 't', 'ث': 'th', 'ج': 'j', 'ح': 'h', 'خ': 'kh',
+                    'د': 'd', 'ذ': 'dh', 'ر': 'r', 'ز': 'z', 'س': 's', 'ش': 'sh', 'ص': 's',
+                    'ض': 'd', 'ط': 't', 'ظ': 'z', 'ع': "'", 'غ': 'gh', 'ف': 'f', 'ق': 'q',
+                    'ك': 'k', 'ل': 'l', 'م': 'm', 'ن': 'n', 'ه': 'h', 'و': 'w', 'ي': 'y',
+                    'ى': 'a', 'ة': 'h', 'أ': 'a', 'إ': 'i', 'آ': 'aa', 'ؤ': 'u', 'ئ': 'i',
+                    'َ': 'a', 'ُ': 'u', 'ِ': 'i', 'ْ': '', 'ً': 'an', 'ٌ': 'un', 'ٍ': 'in'
+                }
             },
 
             // Japanese Hiragana to Romaji
@@ -193,10 +212,21 @@ class BrowserTransliterationLib {
             return this.generalTransliterate(text);
         }
 
+        // Special handling for Arabic - check for complete name matches first
+        if (script === 'arabic' && mapping.names) {
+            const normalizedText = text.trim();
+            if (mapping.names[normalizedText]) {
+                return mapping.names[normalizedText];
+            }
+        }
+
+        // Use character mapping (for Arabic, use the 'chars' sub-object)
+        const charMapping = script === 'arabic' ? mapping.chars : mapping;
+        
         let result = '';
         for (let char of text) {
-            if (mapping[char]) {
-                result += mapping[char];
+            if (charMapping[char]) {
+                result += charMapping[char];
             } else if (char.match(/[a-zA-Z0-9\s\-'.]/) || char.charCodeAt(0) < 128) {
                 // Keep Latin characters, numbers, spaces, and common punctuation
                 result += char;
@@ -204,6 +234,11 @@ class BrowserTransliterationLib {
                 // For unknown characters, try general transliteration
                 result += this.generalTransliterateChar(char);
             }
+        }
+
+        // For Arabic, try to add vowels to make it more readable
+        if (script === 'arabic') {
+            result = this.enhanceArabicTransliteration(result, text);
         }
 
         return this.cleanupResult(result);
@@ -226,6 +261,44 @@ class BrowserTransliterationLib {
      */
     generalTransliterate(text) {
         return text.split('').map(char => this.generalTransliterateChar(char)).join('');
+    }
+
+    /**
+     * Enhance Arabic transliteration by adding vowels and improving readability
+     */
+    enhanceArabicTransliteration(latinText, originalArabic) {
+        if (!latinText) return latinText;
+
+        // Common Arabic name patterns with vowel insertion
+        const patterns = [
+            // Three consonants - likely CvCvC pattern
+            { pattern: /^([bcdfghjklmnpqrstvwxyz])([bcdfghjklmnpqrstvwxyz])([bcdfghjklmnpqrstvwxyz])$/i, 
+              replacement: '$1a$2a$3' },
+            
+            // Four consonants - likely CvCaCiC or CvCaC pattern  
+            { pattern: /^([bcdfghjklmnpqrstvwxyz])([bcdfghjklmnpqrstvwxyz])([bcdfghjklmnpqrstvwxyz])([bcdfghjklmnpqrstvwxyz])$/i, 
+              replacement: '$1a$2a$3$4' },
+            
+            // Handle 'mhmd' -> 'mohammed'
+            { pattern: /^mhmd$/i, replacement: 'Mohammed' },
+            { pattern: /^ly$/i, replacement: 'Ali' },
+            { pattern: /^hmd$/i, replacement: 'Ahmed' },
+            { pattern: /^hsn$/i, replacement: 'Hassan' },
+            { pattern: /^hssn$/i, replacement: 'Hussein' },
+            { pattern: /^'mr$/i, replacement: 'Omar' },
+            { pattern: /^khld$/i, replacement: 'Khalid' }
+        ];
+
+        let enhanced = latinText;
+        
+        for (const { pattern, replacement } of patterns) {
+            if (pattern.test(enhanced)) {
+                enhanced = enhanced.replace(pattern, replacement);
+                break;
+            }
+        }
+
+        return enhanced;
     }
 
     /**
@@ -254,6 +327,15 @@ class BrowserTransliterationLib {
      */
     calculateAccuracy(originalText, transliteratedText, script) {
         if (!originalText || !transliteratedText) return 0.1;
+        
+        // Check for exact name matches (highest accuracy)
+        if (script === 'arabic') {
+            const mapping = this.scriptMappings[script];
+            if (mapping && mapping.names && mapping.names[originalText.trim()]) {
+                // Perfect match from name dictionary
+                return 0.98;
+            }
+        }
         
         // Base accuracy by script quality
         const baseAccuracy = {
@@ -314,8 +396,10 @@ class BrowserTransliterationLib {
             const lastNameAccuracy = this.calculateAccuracy(lastName, transliteratedLastName, script);
             const overallAccuracy = (firstNameAccuracy + lastNameAccuracy) / 2;
 
-            // Determine method used
-            const method = this.getMethodName(script, country);
+            // Determine method used for each name
+            const firstNameMethod = this.getMethodName(script, country, firstName);
+            const lastNameMethod = this.getMethodName(script, country, lastName);
+            const method = firstNameMethod; // For overall display
 
             return {
                 firstName: transliteratedFirstName,
@@ -323,8 +407,8 @@ class BrowserTransliterationLib {
                 country: country,
                 accuracy: Math.round(overallAccuracy * 100) / 100,
                 details: {
-                    firstNameMethod: method,
-                    lastNameMethod: method,
+                    firstNameMethod: firstNameMethod,
+                    lastNameMethod: lastNameMethod,
                     firstNameAccuracy: Math.round(firstNameAccuracy * 100) / 100,
                     lastNameAccuracy: Math.round(lastNameAccuracy * 100) / 100,
                     detectedScript: script,
@@ -355,9 +439,18 @@ class BrowserTransliterationLib {
     /**
      * Get method name for display
      */
-    getMethodName(script, country) {
+    getMethodName(script, country, originalText = '') {
+        // Check if we used exact name matching for Arabic
+        if (script === 'arabic') {
+            const mapping = this.scriptMappings[script];
+            if (mapping && mapping.names && mapping.names[originalText.trim()]) {
+                return 'arabic_name_exact_match_browser';
+            } else {
+                return 'arabic_transliterate_browser';
+            }
+        }
+
         const methodMap = {
-            'arabic': 'arabic_transliterate_browser',
             'japanese': 'japanese_romaji_browser',
             'korean': 'korean_romanize_browser',
             'chinese': 'chinese_pinyin_browser',
