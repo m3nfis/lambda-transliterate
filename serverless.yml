@@ -1,4 +1,4 @@
-service: lambda-transliterate
+service: lambda-transliterate-names
 
 provider:
   name: aws
