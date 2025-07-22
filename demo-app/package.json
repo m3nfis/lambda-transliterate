@@ -1,0 +1,60 @@
+{
+  "name": "lambda-transliterate-names-demo",
+  "version": "1.2.0",
+  "description": "Interactive demo website for Lambda Transliterate Names API service",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -l 8000",
+    "dev": "npx serve . -l 8000 --verbose",
+    "build": "echo 'Static site - no build needed'",
+    "test": "echo 'No tests specified for static demo'",
+    "serve": "python -m http.server 8000 || php -S localhost:8000",
+    "deploy": "echo 'Deploy to your chosen platform (Render, Vercel, Netlify, etc.)'",
+    "lint": "echo 'No linting configured for vanilla JS/CSS/HTML'",
+    "validate": "echo 'HTML/CSS validation could be added here'"
+  },
+  "keywords": [
+    "transliteration",
+    "names",
+    "lambda",
+    "demo",
+    "api",
+    "javascript",
+    "arabic",
+    "japanese",
+    "korean",
+    "chinese",
+    "russian",
+    "thai",
+    "static-site"
+  ],
+  "author": "Lambda Transliterate Names Team",
+  "license": "MIT",
+  "homepage": "https://github.com/yourusername/lambda-transliterate-names#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/lambda-transliterate-names.git",
+    "directory": "demo-app"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/lambda-transliterate-names/issues"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "devDependencies": {
+    "serve": "^14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "files": [
+    "index.html",
+    "style.css",
+    "script.js",
+    "README.md"
+  ]
+} 

@@ -598,6 +598,104 @@ lambda-transliterate-names/
 - **Compliance** - Meeting international naming standards
 - **Migration Tools** - Converting legacy data to standardized formats
 
+## 🌐 Interactive Demo
+
+Experience the API with our beautiful demo website! Test all supported scripts with real examples and custom input.
+
+### 🚀 Live Demo
+Try the interactive demo at: **[Your Demo URL Here]**
+
+### 🎨 Demo Features
+- **✨ Click-to-Test Examples** - 6 pre-loaded script examples (Arabic, Japanese, Korean, Chinese, Russian, Thai)
+- **📝 Custom Input Form** - Test any names with country selection dropdown
+- **🔧 Advanced JSON Testing** - Direct API testing with raw JSON input
+- **📱 Mobile Responsive** - Works perfectly on all devices
+- **⚡ Real-time Results** - Instant feedback with detailed accuracy metrics
+- **🧪 Demo Mode** - Works offline with mock responses for development
+
+### 🚀 Deploy Your Own Demo
+
+#### Option 1: Deploy to Render.com (Recommended)
+```bash
+# 1. Fork this repository to your GitHub account
+# 2. Visit render.com and connect your GitHub
+# 3. Create new Static Site with these settings:
+#    - Repository: your-fork/lambda-transliterate-names
+#    - Publish Directory: demo-app
+#    - Build Command: (leave empty)
+# 4. Deploy! Your demo will be live at: https://your-app.onrender.com
+```
+
+#### Option 2: Deploy to Vercel
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy from demo-app directory
+cd demo-app
+vercel --prod
+
+# Your demo will be live at: https://your-demo.vercel.app
+```
+
+#### Option 3: Deploy to Netlify
+```bash
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Deploy from demo-app directory
+cd demo-app
+netlify deploy --prod --dir .
+
+# Your demo will be live at: https://your-demo.netlify.app
+```
+
+#### Option 4: GitHub Pages
+```yaml
+# Add to .github/workflows/demo-deploy.yml
+name: Deploy Demo to GitHub Pages
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'demo-app/**' ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./demo-app
+```
+
+### ⚙️ Configure Demo for Your API
+
+Update the API endpoint in `demo-app/script.js`:
+```javascript
+const CONFIG = {
+    API_ENDPOINT: 'https://your-api-gateway-url.com/transliterate',
+    DEMO_MODE: false  // Set to false for real API calls
+};
+```
+
+Or configure at runtime in browser console:
+```javascript
+updateAPIEndpoint('https://your-api-gateway-url.com/transliterate')
+```
+
+### 📁 Demo File Structure
+```
+demo-app/
+├── index.html          # Beautiful, responsive HTML interface
+├── style.css           # Modern CSS with gradients and animations  
+├── script.js           # Interactive JavaScript with API integration
+├── package.json        # Demo app metadata and scripts
+└── README.md           # Complete demo documentation
+```
+
 ## 🔒 Security & Compliance
 
 - **Input Validation** - Comprehensive request validation and sanitization

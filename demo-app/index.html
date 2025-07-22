@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lambda Transliterate Names - Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-globe"></i>
+                    <h1>Lambda Transliterate Names</h1>
+                </div>
+                <p class="tagline">Transform names from any script to Latin characters with AI-powered accuracy</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- Quick Examples Section -->
+            <section class="examples-section">
+                <h2><i class="fas fa-star"></i> Try Examples by Script</h2>
+                <p class="section-description">Click any example below to see instant transliteration results</p>
+                
+                <div class="examples-grid">
+                    <!-- Arabic Example -->
+                    <div class="example-card" data-example='{"firstName":"محمد","lastName":"علي","country":"EG"}'>
+                        <div class="script-header">
+                            <span class="flag">🇪🇬</span>
+                            <div>
+                                <h3>Arabic (Egypt)</h3>
+                                <p>IJMES Transliteration</p>
+                            </div>
+                        </div>
+                        <div class="names">
+                            <span class="original">محمد علي</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span class="transliterated">Mohammed Ali</span>
+                        </div>
+                        <div class="accuracy">95% accuracy</div>
+                    </div>
+
+                    <!-- Japanese Example -->
+                    <div class="example-card" data-example='{"firstName":"太郎","lastName":"山田","country":"JP"}'>
+                        <div class="script-header">
+                            <span class="flag">🇯🇵</span>
+                            <div>
+                                <h3>Japanese (Japan)</h3>
+                                <p>Kuroshiro Library</p>
+                            </div>
+                        </div>
+                        <div class="names">
+                            <span class="original">太郎 山田</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span class="transliterated">Tarou Yamada</span>
+                        </div>
+                        <div class="accuracy">95% accuracy</div>
+                    </div>
+
+                    <!-- Korean Example -->
+                    <div class="example-card" data-example='{"firstName":"민수","lastName":"김","country":"KR"}'>
+                        <div class="script-header">
+                            <span class="flag">🇰🇷</span>
+                            <div>
+                                <h3>Korean (South Korea)</h3>
+                                <p>Romanization Standard</p>
+                            </div>
+                        </div>
+                        <div class="names">
+                            <span class="original">민수 김</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span class="transliterated">Minsu Kim</span>
+                        </div>
+                        <div class="accuracy">95% accuracy</div>
+                    </div>
+
+                    <!-- Chinese Example -->
+                    <div class="example-card" data-example='{"firstName":"小明","lastName":"王","country":"CN"}'>
+                        <div class="script-header">
+                            <span class="flag">🇨🇳</span>
+                            <div>
+                                <h3>Chinese (China)</h3>
+                                <p>Pinyin System</p>
+                            </div>
+                        </div>
+                        <div class="names">
+                            <span class="original">小明 王</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span class="transliterated">Xiaoming Wang</span>
+                        </div>
+                        <div class="accuracy">60% accuracy</div>
+                    </div>
+
+                    <!-- Russian Example -->
+                    <div class="example-card" data-example='{"firstName":"Владимир","lastName":"Иванов","country":"RU"}'>
+                        <div class="script-header">
+                            <span class="flag">🇷🇺</span>
+                            <div>
+                                <h3>Russian (Russia)</h3>
+                                <p>Cyrillic to Latin</p>
+                            </div>
+                        </div>
+                        <div class="names">
+                            <span class="original">Владимир Иванов</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span class="transliterated">Vladimir Ivanov</span>
+                        </div>
+                        <div class="accuracy">60% accuracy</div>
+                    </div>
+
+                    <!-- Thai Example -->
+                    <div class="example-card" data-example='{"firstName":"สมชาย","lastName":"จันทร์","country":"TH"}'>
+                        <div class="script-header">
+                            <span class="flag">🇹🇭</span>
+                            <div>
+                                <h3>Thai (Thailand)</h3>
+                                <p>Thai to Latin</p>
+                            </div>
+                        </div>
+                        <div class="names">
+                            <span class="original">สมชาย จันทร์</span>
+                            <i class="fas fa-arrow-right"></i>
+                            <span class="transliterated">Somchai Chan</span>
+                        </div>
+                        <div class="accuracy">60% accuracy</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Testing Section -->
+            <section class="testing-section">
+                <h2><i class="fas fa-edit"></i> Test Your Own Names</h2>
+                <p class="section-description">Enter any names in their original script and see the transliteration magic happen!</p>
+                
+                <div class="testing-container">
+                    <div class="input-section">
+                        <form id="transliteration-form">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" placeholder="e.g., محمد, 太郎, 민수" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" placeholder="e.g., علي, 山田, 김" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="country">Country Code</label>
+                                <select id="country" name="country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="EG">🇪🇬 Egypt (Arabic)</option>
+                                    <option value="JP">🇯🇵 Japan (Japanese)</option>
+                                    <option value="KR">🇰🇷 South Korea (Korean)</option>
+                                    <option value="CN">🇨🇳 China (Chinese)</option>
+                                    <option value="RU">🇷🇺 Russia (Russian)</option>
+                                    <option value="TH">🇹🇭 Thailand (Thai)</option>
+                                    <option value="IN">🇮🇳 India (Hindi)</option>
+                                    <option value="GR">🇬🇷 Greece (Greek)</option>
+                                    <option value="US">🇺🇸 Other/Unknown</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn" id="submit-btn">
+                                <i class="fas fa-magic"></i>
+                                Transliterate Names
+                            </button>
+                        </form>
+                        
+                        <!-- Advanced JSON Input -->
+                        <div class="advanced-section">
+                            <h3><i class="fas fa-code"></i> Advanced: Raw JSON Input</h3>
+                            <textarea id="jsonInput" placeholder='{"firstName":"محمد","lastName":"علي","country":"EG"}'></textarea>
+                            <button type="button" id="json-submit-btn" class="submit-btn secondary">
+                                <i class="fas fa-terminal"></i>
+                                Send JSON Request
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="results-section">
+                        <div id="loading" class="loading hidden">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Transliterating names...</p>
+                        </div>
+                        
+                        <div id="results" class="results hidden">
+                            <h3><i class="fas fa-check-circle"></i> Results</h3>
+                            <div class="result-card">
+                                <div class="result-names">
+                                    <div class="name-result">
+                                        <label>First Name:</label>
+                                        <span id="result-firstName"></span>
+                                    </div>
+                                    <div class="name-result">
+                                        <label>Last Name:</label>
+                                        <span id="result-lastName"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="result-metadata">
+                                    <div class="metadata-item">
+                                        <i class="fas fa-flag"></i>
+                                        <span>Country: <strong id="result-country"></strong></span>
+                                    </div>
+                                    <div class="metadata-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Accuracy: <strong id="result-accuracy"></strong></span>
+                                    </div>
+                                    <div class="metadata-item">
+                                        <i class="fas fa-cog"></i>
+                                        <span>Method: <strong id="result-method"></strong></span>
+                                    </div>
+                                </div>
+                                
+                                <details class="result-details">
+                                    <summary><i class="fas fa-info-circle"></i> Detailed Information</summary>
+                                    <pre id="result-json"></pre>
+                                </details>
+                            </div>
+                        </div>
+                        
+                        <div id="error" class="error hidden">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Error</h3>
+                            <div class="error-content">
+                                <p id="error-message"></p>
+                                <details class="error-details">
+                                    <summary>Technical Details</summary>
+                                    <pre id="error-json"></pre>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- API Information Section -->
+            <section class="api-section">
+                <h2><i class="fas fa-code"></i> API Information</h2>
+                <div class="api-cards">
+                    <div class="api-card">
+                        <h3><i class="fas fa-link"></i> Endpoint</h3>
+                        <code id="api-endpoint">Configure your API endpoint in script.js</code>
+                    </div>
+                    
+                    <div class="api-card">
+                        <h3><i class="fas fa-file-code"></i> Request Format</h3>
+                        <pre><code>{
+  "firstName": "محمد",
+  "lastName": "علي", 
+  "country": "EG"
+}</code></pre>
+                    </div>
+                    
+                    <div class="api-card">
+                        <h3><i class="fas fa-code-branch"></i> Response Format</h3>
+                        <pre><code>{
+  "firstName": "Mohammed",
+  "lastName": "Ali",
+  "country": "EG",
+  "accuracy": 0.95,
+  "details": {
+    "firstNameMethod": "arabic_transliterate",
+    "lastNameMethod": "arabic_transliterate",
+    "firstNameAccuracy": 0.95,
+    "lastNameAccuracy": 0.95
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Lambda Transliterate Names. Built with ❤️ for global name transliteration.</p>
+            <div class="footer-links">
+                <a href="https://github.com/yourusername/lambda-transliterate-names" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="#" onclick="showDocumentation()">
+                    <i class="fas fa-book"></i> Documentation
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
