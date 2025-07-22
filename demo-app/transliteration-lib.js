@@ -212,11 +212,11 @@ class BrowserTransliterationLib {
             return this.generalTransliterate(text);
         }
 
-        // Special handling for Arabic - check for complete name matches first
+        // Special handling for Arabic - check for name matches (word by word)
         if (script === 'arabic' && mapping.names) {
-            const normalizedText = text.trim();
-            if (mapping.names[normalizedText]) {
-                return mapping.names[normalizedText];
+            const result = this.transliterateArabicWithNameMatching(text, mapping);
+            if (result) {
+                return result;
             }
         }
 
@@ -242,6 +242,65 @@ class BrowserTransliterationLib {
         }
 
         return this.cleanupResult(result);
+    }
+
+    /**
+     * Transliterate Arabic text with word-by-word name matching
+     */
+    transliterateArabicWithNameMatching(text, mapping) {
+        const normalizedText = text.trim();
+        
+        // First try exact match for the whole string
+        if (mapping.names[normalizedText]) {
+            return mapping.names[normalizedText];
+        }
+
+        // Split by spaces and try to match each word individually
+        const words = normalizedText.split(/\s+/).filter(word => word.length > 0);
+        if (words.length <= 1) {
+            return null; // Single word, no splitting needed
+        }
+
+        const transliteratedWords = [];
+        let hasAnyMatch = false;
+
+        for (const word of words) {
+            const trimmedWord = word.trim();
+            if (mapping.names[trimmedWord]) {
+                // Found exact match for this word
+                transliteratedWords.push(mapping.names[trimmedWord]);
+                hasAnyMatch = true;
+            } else {
+                // No match found, use character mapping for this word
+                const charResult = this.transliterateArabicChars(trimmedWord, mapping.chars);
+                transliteratedWords.push(charResult);
+            }
+        }
+
+        // If we found at least one name match, return the combined result
+        if (hasAnyMatch) {
+            return transliteratedWords.join(' ');
+        }
+
+        // No name matches found, return null to use character mapping
+        return null;
+    }
+
+    /**
+     * Transliterate Arabic text using character mapping only
+     */
+    transliterateArabicChars(text, charMapping) {
+        let result = '';
+        for (let char of text) {
+            if (charMapping[char]) {
+                result += charMapping[char];
+            } else if (char.match(/[a-zA-Z0-9\s\-'.]/) || char.charCodeAt(0) < 128) {
+                result += char;
+            } else {
+                result += this.generalTransliterateChar(char);
+            }
+        }
+        return this.enhanceArabicTransliteration(result, text);
     }
 
     /**
@@ -328,12 +387,35 @@ class BrowserTransliterationLib {
     calculateAccuracy(originalText, transliteratedText, script) {
         if (!originalText || !transliteratedText) return 0.1;
         
-        // Check for exact name matches (highest accuracy)
+        // Check for Arabic name matches (including word-by-word)
         if (script === 'arabic') {
             const mapping = this.scriptMappings[script];
-            if (mapping && mapping.names && mapping.names[originalText.trim()]) {
-                // Perfect match from name dictionary
-                return 0.98;
+            if (mapping && mapping.names) {
+                const normalizedText = originalText.trim();
+                
+                // Check for exact full match
+                if (mapping.names[normalizedText]) {
+                    return 0.98;
+                }
+                
+                // Check for word-by-word matches
+                const words = normalizedText.split(/\s+/).filter(word => word.length > 0);
+                if (words.length > 1) {
+                    let matchedWords = 0;
+                    let totalWords = words.length;
+                    
+                    for (const word of words) {
+                        if (mapping.names[word.trim()]) {
+                            matchedWords++;
+                        }
+                    }
+                    
+                    if (matchedWords > 0) {
+                        // Mixed accuracy based on ratio of matched vs unmapped words
+                        const matchRatio = matchedWords / totalWords;
+                        return Math.min(0.98, 0.95 + (matchRatio * 0.03)); // 95-98% based on match ratio
+                    }
+                }
             }
         }
         
@@ -440,14 +522,36 @@ class BrowserTransliterationLib {
      * Get method name for display
      */
     getMethodName(script, country, originalText = '') {
-        // Check if we used exact name matching for Arabic
+        // Check if we used Arabic name matching (exact or word-by-word)
         if (script === 'arabic') {
             const mapping = this.scriptMappings[script];
-            if (mapping && mapping.names && mapping.names[originalText.trim()]) {
-                return 'arabic_name_exact_match_browser';
-            } else {
-                return 'arabic_transliterate_browser';
+            if (mapping && mapping.names) {
+                const normalizedText = originalText.trim();
+                
+                // Check for exact full match
+                if (mapping.names[normalizedText]) {
+                    return 'arabic_name_exact_match_browser';
+                }
+                
+                // Check for word-by-word matches
+                const words = normalizedText.split(/\s+/).filter(word => word.length > 0);
+                if (words.length > 1) {
+                    let hasAnyMatch = false;
+                    for (const word of words) {
+                        if (mapping.names[word.trim()]) {
+                            hasAnyMatch = true;
+                            break;
+                        }
+                    }
+                    
+                    if (hasAnyMatch) {
+                        return 'arabic_name_mixed_match_browser';
+                    }
+                }
             }
+            
+            // No name matches, using character mapping
+            return 'arabic_transliterate_browser';
         }
 
         const methodMap = {
