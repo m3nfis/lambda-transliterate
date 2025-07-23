@@ -415,6 +415,7 @@ function formatMethodName(method) {
         'kuroshiro': 'Kuroshiro (Japanese)',
         'korean_romanize': 'Korean Romanize',
         'general_transliteration': 'General Transliteration',
+        'latin_normalization': 'Latin Normalization',
         'exact_match': 'Exact Match',
         'original_text_fallback': 'Original Text (Fallback)',
         

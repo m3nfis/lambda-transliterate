@@ -274,17 +274,75 @@ describe('TransliterationService', () => {
       expect(result.method).toBe('general_transliteration');
     });
 
-    test('should handle accented Latin characters', async () => {
+    test('should handle accented Latin characters with dedicated normalization', async () => {
+      const result = await service.transliterate({
+        firstName: 'Penélope',
+        lastName: 'Penélope',
+        country: 'US'
+      });
+
+      expect(result.firstName).toBe('Penelope');
+      expect(result.lastName).toBe('Penelope');
+      expect(result.country).toBe('US');
+      expect(result.accuracy).toBe(0.98);
+      expect(result.method).toBe('latin_normalization');
+    });
+
+    test('should handle Spanish accented characters', async () => {
       const result = await service.transliterate({
         firstName: 'José',
         lastName: 'García',
         country: 'ES'
       });
 
-      expect(result.firstName).toBe('Jose');      // Transliterated (accents removed)
-      expect(result.lastName).toBe('Garcia');     // Transliterated (accents removed)
+      expect(result.firstName).toBe('Jose');
+      expect(result.lastName).toBe('Garcia');
       expect(result.country).toBe('ES');
-      expect(result.method).toBe('general_transliteration');
+      expect(result.accuracy).toBe(0.98);
+      expect(result.method).toBe('latin_normalization');
+    });
+
+    test('should handle various diacritics correctly', async () => {
+      const result = await service.transliterate({
+        firstName: 'François',
+        lastName: 'Müller',
+        country: 'FR'
+      });
+
+      expect(result.firstName).toBe('Francois');
+      expect(result.lastName).toBe('Muller');
+      expect(result.country).toBe('FR');
+      expect(result.accuracy).toBe(0.98);
+      expect(result.method).toBe('latin_normalization');
+    });
+
+    test('should handle mixed cases with and without diacritics', async () => {
+      const result = await service.transliterate({
+        firstName: 'André',
+        lastName: 'Smith',
+        country: 'CA'
+      });
+
+      expect(result.firstName).toBe('Andre');
+      expect(result.lastName).toBe('Smith');
+      expect(result.country).toBe('CA');
+      expect(result.accuracy).toBe(0.98);
+      expect(result.method).toBe('latin_normalization');
+    });
+
+    test('should handle combining diacritical marks', async () => {
+      // Using combining characters (base + diacritic)
+      const nameWithCombining = 'Pene\u0301lope'; // é as e + combining acute accent
+      const result = await service.transliterate({
+        firstName: nameWithCombining,
+        lastName: 'Test',
+        country: 'US'
+      });
+
+      expect(result.firstName).toBe('Penelope');
+      expect(result.lastName).toBe('Test');
+      expect(result.accuracy).toBe(0.98);
+      expect(result.method).toBe('latin_normalization');
     });
   });
 

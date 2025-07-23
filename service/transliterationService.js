@@ -378,6 +378,11 @@ class TransliterationService {
     const { firstName, lastName, country } = input;
     
     try {
+      // Check if this is Latin script that needs normalization (contains diacritics)
+      if (this.isLatinWithDiacritics(firstName) || (lastName && this.isLatinWithDiacritics(lastName))) {
+        return await this.transliterateLatinNormalization(input);
+      }
+
       // Use the general transliteration library
       const transliteratedFirstName = transliteration.transliterate(firstName);
       const transliteratedLastName = lastName ? transliteration.transliterate(lastName) : '';
@@ -401,6 +406,92 @@ class TransliterationService {
         method: 'fallback_original'
       };
     }
+  }
+
+  /**
+   * Check if text is Latin script with diacritics/accents
+   */
+  isLatinWithDiacritics(text) {
+    if (!text) return false;
+    
+    // Check for common Latin characters with diacritics
+    const diacriticPattern = /[ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖØòóôõöøÙÚÛÜùúûüÝýÿ]/;
+    
+    // Also check for Latin base + combining diacritical marks
+    const combiningDiacritics = /[\u0300-\u036f]/;
+    
+    return diacriticPattern.test(text) || combiningDiacritics.test(text);
+  }
+
+  /**
+   * Dedicated Latin script normalization (slug/diacritic removal)
+   */
+  async transliterateLatinNormalization(input) {
+    const { firstName, lastName, country } = input;
+    
+    try {
+      const normalizeLatinText = (text) => {
+        if (!text) return '';
+        
+        // First, try Unicode normalization to decompose characters
+        let normalized = text.normalize('NFD');
+        
+        // Remove combining diacritical marks
+        normalized = normalized.replace(/[\u0300-\u036f]/g, '');
+        
+        // Handle specific character replacements that normalization might miss
+        const diacriticMap = {
+          'À': 'A', 'Á': 'A', 'Â': 'A', 'Ã': 'A', 'Ä': 'A', 'Å': 'A',
+          'à': 'a', 'á': 'a', 'â': 'a', 'ã': 'a', 'ä': 'a', 'å': 'a',
+          'Ç': 'C', 'ç': 'c',
+          'È': 'E', 'É': 'E', 'Ê': 'E', 'Ë': 'E',
+          'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e',
+          'Ì': 'I', 'Í': 'I', 'Î': 'I', 'Ï': 'I',
+          'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
+          'Ñ': 'N', 'ñ': 'n',
+          'Ò': 'O', 'Ó': 'O', 'Ô': 'O', 'Õ': 'O', 'Ö': 'O', 'Ø': 'O',
+          'ò': 'o', 'ó': 'o', 'ô': 'o', 'õ': 'o', 'ö': 'o', 'ø': 'o',
+          'Ù': 'U', 'Ú': 'U', 'Û': 'U', 'Ü': 'U',
+          'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u',
+          'Ý': 'Y', 'ý': 'y', 'ÿ': 'y',
+          'Æ': 'AE', 'æ': 'ae',
+          'Œ': 'OE', 'œ': 'oe',
+          'ß': 'ss'
+        };
+        
+        // Apply character-by-character replacement
+        for (const [accented, plain] of Object.entries(diacriticMap)) {
+          normalized = normalized.replace(new RegExp(accented, 'g'), plain);
+        }
+        
+        return normalized;
+      };
+
+      const normalizedFirstName = normalizeLatinText(firstName);
+      const normalizedLastName = lastName ? normalizeLatinText(lastName) : '';
+
+      return {
+        firstName: normalizedFirstName.charAt(0).toUpperCase() + normalizedFirstName.slice(1),
+        lastName: lastName ? normalizedLastName.charAt(0).toUpperCase() + normalizedLastName.slice(1) : '',
+        country: country,
+        accuracy: 0.98,
+        method: 'latin_normalization'
+      };
+         } catch (error) {
+       console.error('Latin normalization error:', error);
+       
+       // Fallback to original general transliteration (avoid recursion)
+       const transliteratedFirstName = transliteration.transliterate(firstName);
+       const transliteratedLastName = lastName ? transliteration.transliterate(lastName) : '';
+
+       return {
+         firstName: transliteratedFirstName.charAt(0).toUpperCase() + transliteratedFirstName.slice(1),
+         lastName: lastName ? transliteratedLastName.charAt(0).toUpperCase() + transliteratedLastName.slice(1) : '',
+         country: country,
+         accuracy: 0.6,
+         method: 'general_transliteration'
+       };
+     }
   }
 }
 
