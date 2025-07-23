@@ -203,7 +203,15 @@ class BrowserTransliterationLib {
      * Transliterate text using character mappings
      */
     transliterateText(text, script) {
-        if (!text || script === 'latin') {
+        if (!text) {
+            return text;
+        }
+
+        // Handle Latin script with diacritics normalization
+        if (script === 'latin') {
+            if (this.hasLatinDiacritics(text)) {
+                return this.normalizeLatinText(text);
+            }
             return text;
         }
 
@@ -242,6 +250,61 @@ class BrowserTransliterationLib {
         }
 
         return this.cleanupResult(result);
+    }
+
+    /**
+     * Check if Latin text contains diacritics/accents
+     */
+    hasLatinDiacritics(text) {
+        if (!text) return false;
+        
+        // Check for common Latin characters with diacritics
+        const diacriticPattern = /[ÀÁÂÃÄÅàáâãäåÇçÈÉÊËèéêëÌÍÎÏìíîïÑñÒÓÔÕÖØòóôõöøÙÚÛÜùúûüÝýÿ]/;
+        
+        // Also check for Latin base + combining diacritical marks
+        const combiningDiacritics = /[\u0300-\u036f]/;
+        
+        return diacriticPattern.test(text) || combiningDiacritics.test(text);
+    }
+
+    /**
+     * Normalize Latin text by removing diacritics
+     */
+    normalizeLatinText(text) {
+        if (!text) return '';
+        
+        // First, try Unicode normalization to decompose characters
+        let normalized = text.normalize('NFD');
+        
+        // Remove combining diacritical marks
+        normalized = normalized.replace(/[\u0300-\u036f]/g, '');
+        
+        // Handle specific character replacements that normalization might miss
+        const diacriticMap = {
+            'À': 'A', 'Á': 'A', 'Â': 'A', 'Ã': 'A', 'Ä': 'A', 'Å': 'A',
+            'à': 'a', 'á': 'a', 'â': 'a', 'ã': 'a', 'ä': 'a', 'å': 'a',
+            'Ç': 'C', 'ç': 'c',
+            'È': 'E', 'É': 'E', 'Ê': 'E', 'Ë': 'E',
+            'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e',
+            'Ì': 'I', 'Í': 'I', 'Î': 'I', 'Ï': 'I',
+            'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
+            'Ñ': 'N', 'ñ': 'n',
+            'Ò': 'O', 'Ó': 'O', 'Ô': 'O', 'Õ': 'O', 'Ö': 'O', 'Ø': 'O',
+            'ò': 'o', 'ó': 'o', 'ô': 'o', 'õ': 'o', 'ö': 'o', 'ø': 'o',
+            'Ù': 'U', 'Ú': 'U', 'Û': 'U', 'Ü': 'U',
+            'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u',
+            'Ý': 'Y', 'ý': 'y', 'ÿ': 'y',
+            'Æ': 'AE', 'æ': 'ae',
+            'Œ': 'OE', 'œ': 'oe',
+            'ß': 'ss'
+        };
+        
+        // Apply character-by-character replacement
+        for (const [accented, plain] of Object.entries(diacriticMap)) {
+            normalized = normalized.replace(new RegExp(accented, 'g'), plain);
+        }
+        
+        return normalized;
     }
 
     /**
@@ -419,6 +482,11 @@ class BrowserTransliterationLib {
             }
         }
         
+        // Check for Latin normalization
+        if (script === 'latin' && this.hasLatinDiacritics(originalText)) {
+            return 0.98; // High accuracy for Latin normalization
+        }
+        
         // Base accuracy by script quality
         const baseAccuracy = {
             'arabic': 0.95,
@@ -434,15 +502,7 @@ class BrowserTransliterationLib {
 
         // Adjust for text length and complexity
         if (originalText.length < 3) accuracy -= 0.1;
-        if (originalText.length > 10) accuracy -= 0.05;
-        
-        // Bonus for successful character mapping
-        const mappedChars = transliteratedText.replace(/[^a-zA-Z]/g, '').length;
-        const totalChars = originalText.length;
-        if (mappedChars > 0 && totalChars > 0) {
-            const mappingRatio = mappedChars / totalChars;
-            accuracy = Math.min(0.98, accuracy + (mappingRatio * 0.05));
-        }
+        if (originalText.length > 15) accuracy += 0.05;
 
         return Math.max(0.1, Math.min(0.98, accuracy));
     }
@@ -552,6 +612,11 @@ class BrowserTransliterationLib {
             
             // No name matches, using character mapping
             return 'arabic_transliterate_browser';
+        }
+
+        // Check for Latin normalization
+        if (script === 'latin' && this.hasLatinDiacritics(originalText)) {
+            return 'latin_normalization_browser';
         }
 
         const methodMap = {

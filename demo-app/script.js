@@ -408,6 +408,7 @@ function formatMethodName(method) {
         'cyrillic_latin_browser': 'Cyrillic → Latin (Browser)',
         'thai_latin_browser': 'Thai → Latin (Browser)',
         'latin_passthrough': 'Latin (No Translation)',
+        'latin_normalization_browser': 'Latin Normalization (Browser)',
         'general_transliteration_browser': 'General Browser Transliteration',
         
         // Legacy/demo methods
