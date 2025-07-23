@@ -36,11 +36,12 @@ functions:
                   - lastName
                   - country
 
-plugins:
-  - serverless-webpack
+# Temporarily disable webpack to avoid native module issues
+# plugins:
+#   - serverless-webpack
 
-custom:
-  webpack:
-    webpackConfig: webpack.config.js
-    includeModules: true
-    packager: 'npm' 
+# custom:
+#   webpack:
+#     webpackConfig: webpack.config.js
+#     includeModules: true
+#     packager: 'npm' 
