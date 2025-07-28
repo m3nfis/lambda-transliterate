@@ -1,15 +1,12 @@
 const fs = require('fs');
 const arabicTransliterate = require('arabic-transliterate');
+const arabicNamesConfig = require('./arabicNamesConfig');
 
-// Load Arabic-specific name mappings
-let arabicMappings = {};
-try {
-  const mappings = JSON.parse(fs.readFileSync('./name-mappings.json', 'utf8'));
-  arabicMappings = mappings.mappings?.EG || {};
-} catch (error) {
-  console.warn('Warning: Could not load Arabic mappings from name-mappings.json');
-  arabicMappings = {};
-}
+// Load Arabic name mappings from configuration
+const arabicMappings = {
+  firstName: arabicNamesConfig.firstName,
+  lastName: arabicNamesConfig.lastName
+};
 
 class ArabicTransliterationService {
   constructor() {
@@ -128,21 +125,14 @@ class ArabicTransliterationService {
       
       // Common ligatures and combinations
       'لا': 'la', 'لأ': 'la', 'لإ': 'li', 'لآ': 'laa', 'عبد': 'abd', 'عبد ال': 'abd al',
-      'محمد': 'mohammed', 'أحمد': 'ahmed', 'علي': 'ali', 'فاطمة': 'fatima',
-      'عائشة': 'aisha', 'خالد': 'khalid', 'زينب': 'zainab', 'يوسف': 'youssef',
-      'نور': 'nour', 'عمر': 'omar', 'سارة': 'sarah', 'مريم': 'mariam',
-      'إبراهيم': 'ibrahim', 'سعيد': 'saeed', 'عبدالله': 'abdullah', 'حسين': 'hussein',
-      'مصطفى': 'mostafa', 'جمال': 'gamal', 'رضوان': 'radwan', 'صلاح': 'salah',
-      'شريف': 'sherif', 'كريم': 'karim', 'ليلى': 'layla', 'وليد': 'walid',
-      'هنا': 'hana', 'أمير': 'amir', 'ريم': 'reem', 'بلال': 'bilal', 'دينا': 'dina',
-      'فارس': 'faris', 'ياسمين': 'yasmin', 'نادر': 'nader', 'منى': 'mona',
-      'سامي': 'sami', 'ندى': 'nada', 'زياد': 'ziad', 'رانيا': 'rania',
-      'هشام': 'hisham', 'هدى': 'huda', 'باسم': 'basem', 'سمر': 'samar',
-      'ماجد': 'majid', 'أسماء': 'asma', 'سلمان': 'salman', 'داليا': 'dalia',
-      'فهد': 'fahd', 'جميلة': 'jamila', 'تركي': 'turki', 'غادة': 'ghada',
-      'بندر': 'bandar', 'حنان': 'hanan', 'هبة': 'heba', 'آية': 'aya',
-      'طارق': 'tariq', 'إيمان': 'iman', 'حسن': 'hassan', 'لمى': 'lama',
-      'عثمان': 'osman', 'عبد الرحمن': 'abdul rahman'
+      
+      // Use names from configuration (lowercase for character mapping)
+      ...Object.fromEntries(
+        Object.entries(arabicNamesConfig.firstName).map(([key, value]) => [key, value.toLowerCase()])
+      ),
+      ...Object.fromEntries(
+        Object.entries(arabicNamesConfig.lastName).map(([key, value]) => [key, value.toLowerCase()])
+      )
     };
 
     let result = '';

@@ -20,18 +20,26 @@ class BrowserTransliterationLib {
             arabic: {
                 // Complete name mappings (most important - checked first)
                 names: {
-                    'محمد': 'Mohammed', 'علي': 'Ali', 'أحمد': 'Ahmed', 'فاطمة': 'Fatima',
-                    'عبدالله': 'Abdullah', 'عبد الله': 'Abdullah', 'حسن': 'Hassan', 'حسين': 'Hussein',
-                    'عمر': 'Omar', 'عثمان': 'Othman', 'خالد': 'Khalid', 'سعد': 'Saad',
-                    'عبدالرحمن': 'Abdulrahman', 'عبد الرحمن': 'Abdulrahman', 'ابراهيم': 'Ibrahim',
-                    'إبراهيم': 'Ibrahim', 'يوسف': 'Youssef', 'موسى': 'Musa', 'عيسى': 'Issa',
-                    'مريم': 'Mariam', 'عائشة': 'Aisha', 'خديجة': 'Khadija', 'زينب': 'Zeinab',
-                    'سارة': 'Sarah', 'ليلى': 'Layla', 'نور': 'Nour', 'حبيبة': 'Habiba',
-                    'كريم': 'Karim', 'عادل': 'Adel', 'سامي': 'Sami', 'طارق': 'Tarek',
-                    'نادر': 'Nader', 'مصطفى': 'Mostafa', 'صالح': 'Saleh', 'منى': 'Mona',
-                    'هند': 'Hind', 'سلمى': 'Salma', 'دينا': 'Dina', 'رنا': 'Rana',
-                    'حمد': 'Hamad', 'سلطان': 'Sultan', 'فهد': 'Fahad', 'بندر': 'Bandar',
-                    'تركي': 'Turki', 'ناصر': 'Nasser', 'سلمان': 'Salman', 'فيصل': 'Faisal'
+                    // Male names
+                    'محمد': 'Mohammed', 'أحمد': 'Ahmed', 'علي': 'Ali', 'عمر': 'Omar',
+                    'يوسف': 'Youssef', 'خالد': 'Khalid', 'عبدالله': 'Abdullah', 'حسين': 'Hussein',
+                    'مصطفى': 'Mostafa', 'جمال': 'Gamal', 'رضوان': 'Radwan', 'صلاح': 'Salah',
+                    'شريف': 'Sherif', 'كريم': 'Karim', 'وليد': 'Walid', 'أمير': 'Amir',
+                    'بلال': 'Bilal', 'فارس': 'Faris', 'نادر': 'Nader', 'سامي': 'Sami',
+                    'زياد': 'Ziad', 'هشام': 'Hisham', 'باسم': 'Basem', 'ماجد': 'Majid',
+                    'سلمان': 'Salman', 'فهد': 'Fahd', 'تركي': 'Turki', 'بندر': 'Bandar',
+                    'طارق': 'Tariq', 'حسن': 'Hassan', 'عثمان': 'Othman', 'سعيد': 'Saeed',
+                    'محمود': 'Mahmoud', 'إبراهيم': 'Ibrahim', 'عبدالرحمن': 'Abdulrahman',
+                    'عبد الرحمن': 'Abdul Rahman', 'عبد': 'Abdul',
+
+                    // Female names
+                    'فاطمة': 'Fatima', 'عائشة': 'Aisha', 'زينب': 'Zainab', 'نور': 'Nour',
+                    'سارة': 'Sarah', 'هبة': 'Heba', 'آية': 'Aya', 'إيمان': 'Iman',
+                    'لمى': 'Lama', 'مريم': 'Mariam', 'ليلى': 'Layla', 'هنا': 'Hana',
+                    'ريم': 'Reem', 'دينا': 'Dina', 'ياسمين': 'Yasmin', 'منى': 'Mona',
+                    'ندى': 'Nada', 'رانيا': 'Rania', 'هدى': 'Huda', 'سمر': 'Samar',
+                    'أسماء': 'Asma', 'داليا': 'Dalia', 'جميلة': 'Jamila', 'غادة': 'Ghada',
+                    'حنان': 'Hanan'
                 },
                 
                 // Character mappings (fallback for unknown names)
