@@ -194,68 +194,12 @@ class ArabicTransliterationService {
   }
 
   basicTransliteration(text) {
-    // Basic character-by-character transliteration for common Arabic characters
+    // Basic character-by-character transliteration using configuration
     const charMap = {
-      // Common Arabic names and their transliterations
-      'محمد': 'Mohammed',
-      'علي': 'Ali',
-      'فاطمة': 'Fatima',
-      'أحمد': 'Ahmed',
-      'عائشة': 'Aisha',
-      'خالد': 'Khalid',
-      'زينب': 'Zainab',
-      'يوسف': 'Youssef',
-      'نور': 'Nour',
-      'عمر': 'Omar',
-      'سارة': 'Sarah',
-      'عبد الرحمن': 'Abdul Rahman',
-      'هبة': 'Heba',
-      'محمود': 'Mahmoud',
-      'آية': 'Aya',
-      'طارق': 'Tariq',
-      'إيمان': 'Iman',
-      'حسن': 'Hassan',
-      'لمى': 'Lama',
-      'مريم': 'Mariam',
-      'إبراهيم': 'Ibrahim',
-      'سعيد': 'Saeed',
-      'عبدالله': 'Abdullah',
-      'حسين': 'Hussein',
-      'مصطفى': 'Mostafa',
-      'جمال': 'Gamal',
-      'رضوان': 'Radwan',
-      'صلاح': 'Salah',
-      'شريف': 'Sherif',
-      'كريم': 'Karim',
-      'ليلى': 'Layla',
-      'وليد': 'Walid',
-      'هنا': 'Hana',
-      'أمير': 'Amir',
-      'ريم': 'Reem',
-      'بلال': 'Bilal',
-      'دينا': 'Dina',
-      'فارس': 'Faris',
-      'ياسمين': 'Yasmin',
-      'نادر': 'Nader',
-      'منى': 'Mona',
-      'سامي': 'Sami',
-      'ندى': 'Nada',
-      'زياد': 'Ziad',
-      'رانيا': 'Rania',
-      'هشام': 'Hisham',
-      'هدى': 'Huda',
-      'باسم': 'Basem',
-      'سمر': 'Samar',
-      'ماجد': 'Majid',
-      'أسماء': 'Asma',
-      'سلمان': 'Salman',
-      'داليا': 'Dalia',
-      'فهد': 'Fahd',
-      'جميلة': 'Jamila',
-      'تركي': 'Turki',
-      'غادة': 'Ghada',
-      'بندر': 'Bandar',
-      'حنان': 'Hanan'
+      // Use names from configuration
+      ...arabicNamesConfig.firstName,
+      ...arabicNamesConfig.lastName,
+      ...arabicNamesConfig.patterns
     };
 
     // Check if the entire text matches a known mapping
